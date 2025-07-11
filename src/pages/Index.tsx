@@ -1,18 +1,21 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, Clock, Award, Star, CheckCircle, Brain, Target, Compass, Lightbulb } from "lucide-react";
+import { ArrowRight, Users, Clock, Award, Star, CheckCircle, Brain, Target, Compass, Lightbulb, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import AssessmentCard from "../components/AssessmentCard";
+import { getFeaturedAssessments } from "../data/assessments";
 
 const Index = () => {
+  const featuredAssessments = getFeaturedAssessments();
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-blue-600" />
+            <Sparkles className="h-8 w-8 text-blue-600" />
             <span className="text-2xl font-bold text-gray-800">PathFinder</span>
           </div>
           <nav className="hidden md:flex space-x-6">
@@ -27,7 +30,7 @@ const Index = () => {
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <Badge className="mb-6 bg-blue-100 text-blue-700 hover:bg-blue-100" variant="secondary">
-            ✨ Trusted by 10,000+ Students
+            ✨ Trusted by 100,000+ Students Worldwide
           </Badge>
           
           <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
@@ -38,7 +41,8 @@ const Index = () => {
           </h1>
           
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Discover your best fit with our research-backed assessments. Get personalized insights in just 5-10 minutes.
+            Discover your perfect academic and career path with our research-backed assessments. 
+            Get personalized insights across all fields and life stages - completely free.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -48,16 +52,18 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-blue-200 hover:bg-blue-50">
-              Learn More
-            </Button>
+            <Link to="/about">
+              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-blue-200 hover:bg-blue-50">
+                Learn More
+              </Button>
+            </Link>
           </div>
 
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500">
             <div className="flex items-center gap-2">
               <Clock className="h-4 w-4 text-blue-500" />
-              <span>5-10 minutes</span>
+              <span>5-15 minutes</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle className="h-4 w-4 text-green-500" />
@@ -67,101 +73,33 @@ const Index = () => {
               <Award className="h-4 w-4 text-yellow-500" />
               <span>100% Free</span>
             </div>
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4 text-purple-500" />
+              <span>All fields covered</span>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Quick Assessment Categories Preview */}
+      {/* Featured Assessments */}
       <section className="py-16 px-4 bg-white/50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Find Your Perfect Path
+              Start Your Discovery Journey
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Explore different areas to discover what truly fits your interests, skills, and aspirations.
+              Popular assessments across different life stages and interests. Find the one that resonates with you.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card className="group hover:shadow-lg transition-all duration-300 border-blue-100 hover:border-blue-200">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-blue-100 rounded-full w-fit group-hover:bg-blue-200 transition-colors">
-                  <Target className="h-6 w-6 text-blue-600" />
-                </div>
-                <CardTitle className="text-lg font-semibold">Skills & Software</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Discover which programming languages, tools, and software match your learning style.
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Python</Badge>
-                  <Badge variant="secondary" className="text-xs">AutoCAD</Badge>
-                  <Badge variant="secondary" className="text-xs">Figma</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-green-100 hover:border-green-200">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-green-100 rounded-full w-fit group-hover:bg-green-200 transition-colors">
-                  <Lightbulb className="h-6 w-6 text-green-600" />
-                </div>
-                <CardTitle className="text-lg font-semibold">Career & Roles</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Explore career paths that align with your personality and strengths.
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Data Analyst</Badge>
-                  <Badge variant="secondary" className="text-xs">UI Designer</Badge>
-                  <Badge variant="secondary" className="text-xs">AI Engineer</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-purple-100 hover:border-purple-200">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-purple-100 rounded-full w-fit group-hover:bg-purple-200 transition-colors">
-                  <Brain className="h-6 w-6 text-purple-600" />
-                </div>
-                <CardTitle className="text-lg font-semibold">Subject Fit</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Find out which subjects and academic areas suit your thinking style.
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Data Structures</Badge>
-                  <Badge variant="secondary" className="text-xs">Electronics</Badge>
-                  <Badge variant="secondary" className="text-xs">ML</Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="group hover:shadow-lg transition-all duration-300 border-orange-100 hover:border-orange-200">
-              <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-orange-100 rounded-full w-fit group-hover:bg-orange-200 transition-colors">
-                  <Compass className="h-6 w-6 text-orange-600" />
-                </div>
-                <CardTitle className="text-lg font-semibold">Stream Switching</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
-                  Considering a switch? Get personalized guidance on making the right move.
-                </p>
-                <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Mech to CS</Badge>
-                  <Badge variant="secondary" className="text-xs">ECE to IT</Badge>
-                  <Badge variant="secondary" className="text-xs">Civil to Data</Badge>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            {featuredAssessments.map((assessment) => (
+              <AssessmentCard key={assessment.id} {...assessment} />
+            ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center">
             <Link to="/assessments">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8">
                 Explore All Assessments
@@ -172,8 +110,138 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Social Proof & Testimonials */}
+      {/* Comprehensive Coverage */}
       <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              Complete Coverage for Every Stage of Life
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              From high school stream selection to career pivots, we've got assessments for every major decision point in your educational and professional journey.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="group hover:shadow-lg transition-all duration-300 border-blue-100 hover:border-blue-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-blue-100 rounded-full w-fit group-hover:bg-blue-200 transition-colors">
+                  <Target className="h-6 w-6 text-blue-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">High School Students</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Stream selection, entrance exam guidance, and career exploration for grades 9-12.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">Science Stream</Badge>
+                  <Badge variant="secondary" className="text-xs">JEE/NEET</Badge>
+                  <Badge variant="secondary" className="text-xs">Commerce</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 border-green-100 hover:border-green-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-green-100 rounded-full w-fit group-hover:bg-green-200 transition-colors">
+                  <Lightbulb className="h-6 w-6 text-green-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">College Students</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Engineering specializations, skill development, and career planning for undergraduates.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">Programming</Badge>
+                  <Badge variant="secondary" className="text-xs">Specialization</Badge>
+                  <Badge variant="secondary" className="text-xs">Internships</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 border-purple-100 hover:border-purple-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-purple-100 rounded-full w-fit group-hover:bg-purple-200 transition-colors">
+                  <Brain className="h-6 w-6 text-purple-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">Graduates & Professionals</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Career transitions, skill upgrades, and industry switches for working professionals.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">Career Switch</Badge>
+                  <Badge variant="secondary" className="text-xs">Upskilling</Badge>
+                  <Badge variant="secondary" className="text-xs">Leadership</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 border-orange-100 hover:border-orange-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-orange-100 rounded-full w-fit group-hover:bg-orange-200 transition-colors">
+                  <Compass className="h-6 w-6 text-orange-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">Creative & Arts</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Design thinking, artistic mediums, and creative career paths across all art forms.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">UI/UX Design</Badge>
+                  <Badge variant="secondary" className="text-xs">Digital Art</Badge>
+                  <Badge variant="secondary" className="text-xs">Music</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 border-teal-100 hover:border-teal-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-teal-100 rounded-full w-fit group-hover:bg-teal-200 transition-colors">
+                  <Users className="h-6 w-6 text-teal-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">Business & Commerce</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Entrepreneurship readiness, business acumen, and finance career assessments.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">Entrepreneurship</Badge>
+                  <Badge variant="secondary" className="text-xs">Finance</Badge>
+                  <Badge variant="secondary" className="text-xs">Marketing</Badge>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="group hover:shadow-lg transition-all duration-300 border-indigo-100 hover:border-indigo-200">
+              <CardHeader className="text-center pb-4">
+                <div className="mx-auto mb-3 p-3 bg-indigo-100 rounded-full w-fit group-hover:bg-indigo-200 transition-colors">
+                  <Award className="h-6 w-6 text-indigo-600" />
+                </div>
+                <CardTitle className="text-lg font-semibold">International Opportunities</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-600 text-center mb-4">
+                  Study abroad readiness, global career paths, and international education guidance.
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  <Badge variant="secondary" className="text-xs">Study Abroad</Badge>
+                  <Badge variant="secondary" className="text-xs">Scholarships</Badge>
+                  <Badge variant="secondary" className="text-xs">Global Careers</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof & Testimonials */}
+      <section className="py-16 px-4 bg-white/50">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">What Students Say</h2>
