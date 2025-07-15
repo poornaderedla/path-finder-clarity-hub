@@ -1,367 +1,414 @@
+import {
+  ArrowRight,
+  ArrowRightLeft,
+  Award,
+  BarChart,
+  BookOpen,
+  Bot,
+  Brain,
+  Brush,
+  Code,
+  Cog,
+  Compass,
+  DollarSign,
+  Globe,
+  GraduationCap,
+  Heart,
+  Lightbulb,
+  Monitor,
+  Palette,
+  Plane,
+  Rocket,
+  Search,
+  Target,
+  TrendingUp,
+  Users,
+  Wrench,
+} from 'lucide-react';
 
-import { 
-  Target, Brain, Compass, Lightbulb, GraduationCap, Briefcase, 
-  Globe, BookOpen, Award, TrendingUp, Users, Heart, Palette,
-  Calculator, Microscope, Stethoscope, Scale, Camera, Music,
-  Code, Database, Smartphone, Laptop, Wrench, Cog, PenTool,
-  MessageSquare, BarChart, PieChart
-} from "lucide-react";
-import { AssessmentCardProps } from "../components/AssessmentCard";
+export interface Assessment {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  duration: string;
+  difficulty: 'Beginner' | 'Intermediate' | 'Advanced';
+  userCount: string;
+  tags: string[];
+  category: string;
+  comingSoon?: boolean;
+  gradient: string;
+  featured?: boolean;
+}
 
-export const assessmentCategories = [
+export const assessments: Assessment[] = [
+  // High School & Stream Selection
   {
-    id: "engineering-tech",
-    title: "Engineering & Technology",
-    description: "Technical skills, programming, and engineering assessments",
-    color: "from-blue-500 to-cyan-500",
-    assessments: [
-      {
-        id: "programming-languages",
-        title: "Programming Language Fit",
-        description: "Discover which programming languages match your thinking style and career goals",
-        icon: Code,
-        duration: "8-10 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "15K+ taken",
-        tags: ["Python", "JavaScript", "Java", "C++", "React"],
-        category: "Skills & Software",
-        gradient: "bg-gradient-to-br from-blue-500 to-cyan-500"
-      },
-      {
-        id: "software-tools",
-        title: "Software & Tools Assessment",
-        description: "Find the right design and development tools for your workflow",
-        icon: Laptop,
-        duration: "6-8 mins",
-        difficulty: "Beginner" as const,
-        userCount: "12K+ taken",
-        tags: ["Figma", "AutoCAD", "MATLAB", "Photoshop", "Blender"],
-        category: "Skills & Software",
-        gradient: "bg-gradient-to-br from-indigo-500 to-purple-500"
-      },
-      {
-        id: "engineering-specialization",
-        title: "Engineering Specialization",
-        description: "Determine the best engineering branch based on your interests and aptitude",
-        icon: Cog,
-        duration: "12-15 mins",
-        difficulty: "Advanced" as const,
-        userCount: "25K+ taken",
-        tags: ["Mechanical", "Electrical", "Computer", "Civil", "Chemical"],
-        category: "Stream Selection",
-        gradient: "bg-gradient-to-br from-gray-600 to-blue-600"
-      }
-    ]
+    id: 'high-school-stream-selector',
+    title: 'High School Stream Selector',
+    description: 'Find the perfect academic stream (Science, Commerce, Arts) based on your interests, aptitude, and career goals.',
+    icon: GraduationCap,
+    duration: '8-10 mins',
+    difficulty: 'Beginner',
+    userCount: '15K+',
+    tags: ['Stream Selection', 'Career Planning', 'Academic Path'],
+    category: 'High School',
+    gradient: 'from-primary to-accent',
+    featured: true
   },
   {
-    id: "career-guidance",
-    title: "Career & Professional Development",
-    description: "Career paths, role fit, and professional growth assessments",
-    color: "from-green-500 to-emerald-500",
-    assessments: [
-      {
-        id: "career-personality",
-        title: "Career Personality Match",
-        description: "Align your personality type with the perfect career path",
-        icon: Briefcase,
-        duration: "10-12 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "30K+ taken",
-        tags: ["Leadership", "Analytics", "Creative", "Technical", "People"],
-        category: "Career Guidance",
-        gradient: "bg-gradient-to-br from-green-500 to-emerald-500"
-      },
-      {
-        id: "job-role-fit",
-        title: "Job Role Compatibility",
-        description: "Find specific job roles that match your skills and interests",
-        icon: Target,
-        duration: "8-10 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "18K+ taken",
-        tags: ["Data Analyst", "Product Manager", "UX Designer", "Developer"],
-        category: "Career Guidance",
-        gradient: "bg-gradient-to-br from-teal-500 to-green-500"
-      },
-      {
-        id: "career-pivot",
-        title: "Career Change Readiness",
-        description: "Assess your readiness and potential for a successful career transition",
-        icon: TrendingUp,
-        duration: "15-20 mins",
-        difficulty: "Advanced" as const,
-        userCount: "8K+ taken",
-        tags: ["Career Switch", "Upskilling", "Industry Change", "Growth"],
-        category: "Professional Development",
-        gradient: "bg-gradient-to-br from-orange-500 to-red-500"
-      }
-    ]
+    id: 'engineering-branch-explorer',
+    title: 'Engineering Branch Explorer',
+    description: 'Explore different engineering branches and find the best fit for your skills and interests.',
+    icon: Compass,
+    duration: '10-12 mins',
+    difficulty: 'Intermediate',
+    userCount: '12K+',
+    tags: ['Engineering', 'Career Guidance', 'Specialization'],
+    category: 'High School',
+    gradient: 'from-coral to-primary'
   },
   {
-    id: "academic-subjects",
-    title: "Academic Subjects & Streams",
-    description: "Subject compatibility and academic stream selection",  
-    color: "from-purple-500 to-pink-500",
-    assessments: [
-      {
-        id: "subject-affinity",
-        title: "Subject Affinity Test",
-        description: "Discover which academic subjects align with your natural strengths",
-        icon: BookOpen,
-        duration: "10-12 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "22K+ taken",
-        tags: ["Mathematics", "Physics", "Chemistry", "Biology", "Literature"],
-        category: "Academic Guidance",
-        gradient: "bg-gradient-to-br from-purple-500 to-pink-500"
-      },
-      {
-        id: "stream-selection",
-        title: "Stream Selection Guide",
-        description: "Choose the right academic stream for higher secondary education",
-        icon: Compass,
-        duration: "12-15 mins",
-        difficulty: "Beginner" as const,
-        userCount: "35K+ taken",
-        tags: ["Science", "Commerce", "Arts", "Vocational", "PCM", "PCB"],
-        category: "Stream Selection",
-        gradient: "bg-gradient-to-br from-violet-500 to-purple-500"
-      },
-      {
-        id: "research-aptitude",
-        title: "Research Aptitude Assessment",
-        description: "Evaluate your potential for research and higher studies",
-        icon: Microscope,
-        duration: "15-18 mins",
-        difficulty: "Advanced" as const,
-        userCount: "6K+ taken",
-        tags: ["PhD", "Masters", "Research", "Academia", "Innovation"],
-        category: "Higher Education",
-        gradient: "bg-gradient-to-br from-indigo-600 to-blue-600"
-      }
-    ]
+    id: 'medical-field-advisor',
+    title: 'Medical Field Advisor',
+    description: 'Get personalized recommendations for medical specializations based on your strengths and preferences.',
+    icon: Heart,
+    duration: '12-15 mins',
+    difficulty: 'Advanced',
+    userCount: '8K+',
+    tags: ['Medical', 'Career Planning', 'Specialization'],
+    category: 'High School',
+    gradient: 'from-accent to-primary'
   },
   {
-    id: "entrance-exams",
-    title: "Entrance Exam Preparation",
-    description: "Guidance for competitive exams and entrance tests",
-    color: "from-amber-500 to-orange-500",
-    assessments: [
-      {
-        id: "jee-readiness",
-        title: "JEE Preparation Strategy",
-        description: "Assess your readiness and get personalized JEE preparation guidance",
-        icon: Calculator,
-        duration: "10-12 mins",
-        difficulty: "Advanced" as const,
-        userCount: "40K+ taken",
-        tags: ["JEE Main", "JEE Advanced", "Physics", "Chemistry", "Math"],
-        category: "Entrance Exams",
-        gradient: "bg-gradient-to-br from-amber-500 to-orange-500"
-      },
-      {
-        id: "neet-assessment",
-        title: "NEET Preparation Guide",
-        description: "Medical entrance exam strategy based on your learning style",
-        icon: Stethoscope,
-        duration: "10-12 mins",
-        difficulty: "Advanced" as const,
-        userCount: "25K+ taken",
-        tags: ["NEET", "Biology", "Chemistry", "Physics", "Medical"],
-        category: "Entrance Exams",
-        gradient: "bg-gradient-to-br from-red-500 to-pink-500"
-      },
-      {
-        id: "gate-preparation",
-        title: "GATE Exam Strategy",
-        description: "Optimize your GATE preparation based on your engineering background",
-        icon: Award,
-        duration: "8-10 mins",
-        difficulty: "Advanced" as const,
-        userCount: "15K+ taken",
-        tags: ["GATE", "PSU", "M.Tech", "Engineering", "Technical"],
-        category: "Entrance Exams",
-        gradient: "bg-gradient-to-br from-blue-600 to-indigo-600"
-      }
-    ]
+    id: 'arts-humanities-guide',
+    title: 'Arts & Humanities Guide',
+    description: 'Discover career paths in arts and humanities that align with your creative talents and intellectual curiosity.',
+    icon: Lightbulb,
+    duration: '8-10 mins',
+    difficulty: 'Beginner',
+    userCount: '5K+',
+    tags: ['Arts', 'Humanities', 'Career Exploration'],
+    category: 'High School',
+    gradient: 'from-primary to-coral'
   },
+
+  // Skills & Software Assessments
   {
-    id: "creative-arts",
-    title: "Creative Arts & Design",
-    description: "Creative skills, artistic abilities, and design aptitude",
-    color: "from-pink-500 to-rose-500",
-    assessments: [
-      {
-        id: "design-aptitude",
-        title: "Design Thinking Assessment",
-        description: "Evaluate your creative problem-solving and design thinking abilities",
-        icon: Palette,
-        duration: "12-15 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "12K+ taken",
-        tags: ["UI/UX", "Graphic Design", "Product Design", "Creative"],
-        category: "Creative Skills",
-        gradient: "bg-gradient-to-br from-pink-500 to-rose-500"
-      },
-      {
-        id: "artistic-medium",
-        title: "Artistic Medium Finder",
-        description: "Discover which artistic mediums best suit your creative expression",
-        icon: PenTool,
-        duration: "8-10 mins",
-        difficulty: "Beginner" as const,
-        userCount: "8K+ taken",
-        tags: ["Digital Art", "Traditional Art", "Photography", "Sculpture"],
-        category: "Creative Skills",
-        gradient: "bg-gradient-to-br from-purple-500 to-pink-500"
-      },
-      {
-        id: "music-aptitude",
-        title: "Musical Talent Assessment",
-        description: "Explore your musical abilities and potential career paths in music",
-        icon: Music,
-        duration: "10-12 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "5K+ taken",
-        tags: ["Composition", "Performance", "Production", "Theory"],
-        category: "Creative Skills",
-        gradient: "bg-gradient-to-br from-violet-500 to-purple-500",
-        comingSoon: true
-      }
-    ]
+    id: 'programming-aptitude',
+    title: 'Programming Aptitude Test',
+    description: 'Discover if programming is right for you and which languages match your thinking style.',
+    icon: Code,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '25K+',
+    tags: ['Programming', 'Software Development', 'Logic'],
+    category: 'Skills & Software',
+    gradient: 'from-primary to-coral',
+    featured: true
   },
+
   {
-    id: "business-commerce",
-    title: "Business & Commerce",
-    description: "Business acumen, entrepreneurship, and commerce skills",
-    color: "from-emerald-500 to-teal-500",
-    assessments: [
-      {
-        id: "business-acumen",
-        title: "Business Aptitude Test",
-        description: "Assess your potential for business leadership and entrepreneurship",
-        icon: BarChart,
-        duration: "12-15 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "10K+ taken",
-        tags: ["Leadership", "Strategy", "Finance", "Marketing", "Operations"],
-        category: "Business Skills",
-        gradient: "bg-gradient-to-br from-emerald-500 to-teal-500"
-      },
-      {
-        id: "entrepreneurship",
-        title: "Entrepreneur Readiness",
-        description: "Evaluate your readiness to start and run your own business",
-        icon: TrendingUp,
-        duration: "15-18 mins",
-        difficulty: "Advanced" as const,
-        userCount: "7K+ taken",
-        tags: ["Startup", "Innovation", "Risk Management", "Vision"],
-        category: "Entrepreneurship",
-        gradient: "bg-gradient-to-br from-green-600 to-emerald-600",
-        comingSoon: true
-      },
-      {
-        id: "finance-aptitude",
-        title: "Finance Career Fit",
-        description: "Discover your potential in various finance and investment roles",
-        icon: PieChart,
-        duration: "10-12 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "9K+ taken",
-        tags: ["Investment", "Banking", "Financial Analysis", "Risk"],
-        category: "Finance",
-        gradient: "bg-gradient-to-br from-blue-600 to-cyan-600",
-        comingSoon: true
-      }
-    ]
+    id: 'design-thinking-assessment',
+    title: 'Design Thinking & UX Assessment',
+    description: 'Evaluate your design mindset and potential for UX/UI design careers.',
+    icon: Palette,
+    duration: '10-12 mins',
+    difficulty: 'Beginner',
+    userCount: '12K+',
+    tags: ['Design', 'UX/UI', 'Creative Problem Solving'],
+    category: 'Skills & Software',
+    gradient: 'from-accent to-primary'
   },
+
   {
-    id: "international-global",
-    title: "International & Global Opportunities",
-    description: "Study abroad, global careers, and international assessments",
-    color: "from-cyan-500 to-blue-500",
-    assessments: [
-      {
-        id: "study-abroad",
-        title: "Study Abroad Readiness",
-        description: "Assess your preparedness for international education opportunities",
-        icon: Globe,
-        duration: "15-20 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "12K+ taken",
-        tags: ["USA", "UK", "Canada", "Germany", "Australia", "Scholarships"],
-        category: "International",
-        gradient: "bg-gradient-to-br from-cyan-500 to-blue-500",
-        comingSoon: true
-      },
-      {
-        id: "global-career",
-        title: "Global Career Opportunities",
-        description: "Explore international career paths and remote work opportunities",
-        icon: Users,
-        duration: "12-15 mins",
-        difficulty: "Advanced" as const,
-        userCount: "6K+ taken",
-        tags: ["Remote Work", "International", "Cross-cultural", "Global"],
-        category: "International",
-        gradient: "bg-gradient-to-br from-blue-500 to-indigo-500",
-        comingSoon: true
-      }
-    ]
+    id: 'data-analysis-readiness',
+    title: 'Data Analysis Readiness',
+    description: 'Assess your analytical thinking and readiness for data science careers.',
+    icon: BarChart,
+    duration: '10-12 mins',
+    difficulty: 'Intermediate',
+    userCount: '18K+',
+    tags: ['Data Science', 'Analytics', 'Statistics'],
+    category: 'Skills & Software',
+    gradient: 'from-coral to-primary'
   },
+
   {
-    id: "personality-psychology",
-    title: "Personality & Psychology",
-    description: "Personality tests, learning styles, and psychological assessments",
-    color: "from-rose-500 to-pink-500",
-    assessments: [
-      {
-        id: "learning-style",
-        title: "Learning Style Assessment",
-        description: "Discover how you learn best and optimize your study methods",
-        icon: Brain,
-        duration: "8-10 mins",
-        difficulty: "Beginner" as const,
-        userCount: "28K+ taken",
-        tags: ["Visual", "Auditory", "Kinesthetic", "Reading", "Study Tips"],
-        category: "Learning",
-        gradient: "bg-gradient-to-br from-rose-500 to-pink-500"
-      },
-      {
-        id: "personality-big5",
-        title: "Big Five Personality Test",
-        description: "Comprehensive personality assessment based on the Big Five model",
-        icon: Heart,
-        duration: "15-20 mins",
-        difficulty: "Intermediate" as const,
-        userCount: "20K+ taken",
-        tags: ["Openness", "Conscientiousness", "Extraversion", "Agreeableness"],
-        category: "Personality",
-        gradient: "bg-gradient-to-br from-pink-500 to-rose-500",
-        comingSoon: true
-      }
-    ]
+    id: 'autocad-mechanical-fit',
+    title: 'AutoCAD & Mechanical Design Fit',
+    description: 'Determine your aptitude for CAD software and mechanical design work.',
+    icon: Wrench,
+    duration: '8-10 mins',
+    difficulty: 'Intermediate',
+    userCount: '8K+',
+    tags: ['AutoCAD', 'Mechanical Design', 'Engineering'],
+    category: 'Skills & Software',
+    gradient: 'from-accent to-primary'
+  },
+
+  // Career & Role Assessments
+  {
+    id: 'software-engineer-readiness',
+    title: 'Software Engineer Career Fit',
+    description: 'Comprehensive assessment for aspiring software engineers covering technical and soft skills.',
+    icon: Monitor,
+    duration: '15-18 mins',
+    difficulty: 'Advanced',
+    userCount: '30K+',
+    tags: ['Software Engineering', 'Career Planning', 'Technical Skills'],
+    category: 'Career & Roles',
+    gradient: 'from-primary to-accent',
+    featured: true
+  },
+
+  {
+    id: 'product-manager-assessment',
+    title: 'Product Manager Potential',
+    description: 'Evaluate your skills for product management roles in tech companies.',
+    icon: Target,
+    duration: '12-15 mins',
+    difficulty: 'Advanced',
+    userCount: '14K+',
+    tags: ['Product Management', 'Strategy', 'Leadership'],
+    category: 'Career & Roles',
+    gradient: 'from-coral to-primary'
+  },
+
+  {
+    id: 'data-scientist-pathway',
+    title: 'Data Scientist Career Path',
+    description: 'Assess your readiness for data science roles and identify skill gaps.',
+    icon: Brain,
+    duration: '15-18 mins',
+    difficulty: 'Advanced',
+    userCount: '22K+',
+    tags: ['Data Science', 'Machine Learning', 'Research'],
+    category: 'Career & Roles',
+    gradient: 'from-accent to-primary'
+  },
+
+  // Subject Suitability
+  {
+    id: 'engineering-branch-selector',
+    title: 'Engineering Branch Selector',
+    description: 'Find which engineering discipline aligns best with your interests and aptitude.',
+    icon: Cog,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '35K+',
+    tags: ['Engineering', 'Specialization', 'Career Path'],
+    category: 'Subject Suitability',
+    gradient: 'from-primary to-coral',
+    featured: true
+  },
+
+  {
+    id: 'commerce-vs-science',
+    title: 'Commerce vs Science Stream',
+    description: 'Detailed comparison to help you choose between Commerce and Science streams.',
+    icon: TrendingUp,
+    duration: '10-12 mins',
+    difficulty: 'Beginner',
+    userCount: '20K+',
+    tags: ['Stream Selection', 'Commerce', 'Science'],
+    category: 'Subject Suitability',
+    gradient: 'from-coral to-primary'
+  },
+
+  // Stream Switching & Transitions
+  {
+    id: 'career-switch-readiness',
+    title: 'Career Switch Readiness',
+    description: 'Evaluate if you\'re ready to make a major career transition and in which direction.',
+    icon: ArrowRight,
+    duration: '15-20 mins',
+    difficulty: 'Advanced',
+    userCount: '16K+',
+    tags: ['Career Change', 'Transition Planning', 'Skills Assessment'],
+    category: 'Stream Switching',
+    gradient: 'from-accent to-primary',
+    featured: true
+  },
+
+  {
+    id: 'mechanical-to-cs',
+    title: 'Mechanical to Computer Science',
+    description: 'Specific guidance for mechanical engineers looking to transition into CS/IT.',
+    icon: ArrowRightLeft,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '9K+',
+    tags: ['Career Switch', 'Mechanical to IT', 'Transition'],
+    category: 'Stream Switching',
+    gradient: 'from-primary to-accent'
+  },
+
+  // Creative & Arts
+  {
+    id: 'creative-career-explorer',
+    title: 'Creative Career Explorer',
+    description: 'Discover your creative strengths and matching career paths in arts and design.',
+    icon: Brush,
+    duration: '10-12 mins',
+    difficulty: 'Beginner',
+    userCount: '11K+',
+    tags: ['Creative Arts', 'Design', 'Media'],
+    category: 'Creative & Arts',
+    gradient: 'from-coral to-primary'
+  },
+
+  {
+    id: 'digital-art-vs-traditional',
+    title: 'Digital Art vs Traditional Art',
+    description: 'Find whether digital or traditional art mediums suit your creative style better.',
+    icon: Palette,
+    duration: '8-10 mins',
+    difficulty: 'Beginner',
+    userCount: '7K+',
+    tags: ['Digital Art', 'Traditional Art', 'Creative Medium'],
+    category: 'Creative & Arts',
+    gradient: 'from-accent to-primary'
+  },
+
+  // Business & Commerce
+  {
+    id: 'entrepreneurship-readiness',
+    title: 'Entrepreneurship Readiness',
+    description: 'Assess your entrepreneurial mindset and readiness to start your own business.',
+    icon: Rocket,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '13K+',
+    tags: ['Entrepreneurship', 'Business', 'Startup'],
+    category: 'Business & Commerce',
+    gradient: 'from-primary to-coral'
+  },
+
+  {
+    id: 'finance-career-fit',
+    title: 'Finance Career Compatibility',
+    description: 'Evaluate your fit for various finance roles from analyst to investment banking.',
+    icon: DollarSign,
+    duration: '10-12 mins',
+    difficulty: 'Intermediate',
+    userCount: '15K+',
+    tags: ['Finance', 'Banking', 'Investment'],
+    category: 'Business & Commerce',
+    gradient: 'from-coral to-primary'
+  },
+
+  // International & Global
+  {
+    id: 'study-abroad-readiness',
+    title: 'Study Abroad Readiness',
+    description: 'Comprehensive assessment of your preparedness for international education.',
+    icon: Globe,
+    duration: '15-18 mins',
+    difficulty: 'Advanced',
+    userCount: '12K+',
+    tags: ['Study Abroad', 'International Education', 'Global Careers'],
+    category: 'International & Global',
+    gradient: 'from-accent to-primary'
+  },
+
+  {
+    id: 'global-career-opportunities',
+    title: 'Global Career Opportunities',
+    description: 'Explore international career paths and assess your global mobility potential.',
+    icon: Plane,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '8K+',
+    tags: ['Global Careers', 'International Work', 'Mobility'],
+    category: 'International & Global',
+    gradient: 'from-primary to-accent'
+  },
+
+  // Personality & Learning Style
+  {
+    id: 'learning-style-optimizer',
+    title: 'Learning Style Optimizer',
+    description: 'Discover your optimal learning methods and study strategies for better academic performance.',
+    icon: BookOpen,
+    duration: '8-10 mins',
+    difficulty: 'Beginner',
+    userCount: '20K+',
+    tags: ['Learning Style', 'Study Methods', 'Academic Success'],
+    category: 'Personality & Learning',
+    gradient: 'from-coral to-primary'
+  },
+
+  {
+    id: 'leadership-potential',
+    title: 'Leadership Potential Assessment',
+    description: 'Evaluate your leadership qualities and potential for management roles.',
+    icon: Users,
+    duration: '12-15 mins',
+    difficulty: 'Intermediate',
+    userCount: '17K+',
+    tags: ['Leadership', 'Management', 'Team Skills'],
+    category: 'Personality & Learning',
+    gradient: 'from-primary to-accent'
+  },
+
+  // Graduate & Professional
+  {
+    id: 'mba-readiness',
+    title: 'MBA Readiness Assessment',
+    description: 'Evaluate your readiness for MBA programs and business school applications.',
+    icon: Award,
+    duration: '15-18 mins',
+    difficulty: 'Advanced',
+    userCount: '10K+',
+    tags: ['MBA', 'Business School', 'Higher Education'],
+    category: 'Graduate & Professional',
+    gradient: 'from-accent to-primary'
+  },
+
+  {
+    id: 'research-aptitude',
+    title: 'Research Aptitude Test',
+    description: 'Assess your potential for research work and academic careers.',
+    icon: Search,
+    duration: '12-15 mins',
+    difficulty: 'Advanced',
+    userCount: '9K+',
+    tags: ['Research', 'Academia', 'PhD Preparation'],
+    category: 'Graduate & Professional',
+    gradient: 'from-coral to-primary'
+  },
+
+  // Coming Soon
+  {
+    id: 'ai-ml-specialization',
+    title: 'AI/ML Specialization Fit',
+    description: 'Assess your readiness for artificial intelligence and machine learning careers.',
+    icon: Bot,
+    duration: '15-18 mins',
+    difficulty: 'Advanced',
+    userCount: '0',
+    tags: ['AI/ML', 'Technology', 'Future Careers'],
+    category: 'Skills & Software',
+    gradient: 'from-primary to-accent',
+    comingSoon: true
+  },
+
+  {
+    id: 'medical-career-explorer',
+    title: 'Medical Career Explorer',
+    description: 'Comprehensive assessment for aspiring medical professionals across all specializations.',
+    icon: Heart,
+    duration: '18-20 mins',
+    difficulty: 'Advanced',
+    userCount: '0',
+    tags: ['Medical', 'Healthcare', 'NEET Preparation'],
+    category: 'Career & Roles',
+    gradient: 'from-coral to-primary',
+    comingSoon: true
   }
 ];
 
-export const getAllAssessments = (): AssessmentCardProps[] => {
-  return assessmentCategories.flatMap(category => 
-    category.assessments.map(assessment => ({
-      ...assessment,
-      category: category.title
-    }))
-  );
-};
-
-export const getFeaturedAssessments = (): AssessmentCardProps[] => {
-  return [
-    assessmentCategories[0].assessments[0], // Programming Languages
-    assessmentCategories[1].assessments[0], // Career Personality
-    assessmentCategories[2].assessments[1], // Stream Selection
-    assessmentCategories[6].assessments[0], // Learning Style
-  ].map((assessment, index) => ({
-    ...assessment,
-    category: assessmentCategories[Math.floor(index / 3)].title
-  }));
+export const getFeaturedAssessments = (): Assessment[] => {
+  return assessments.filter(assessment => assessment.featured);
 };

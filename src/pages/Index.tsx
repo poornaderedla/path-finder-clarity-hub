@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -10,18 +11,20 @@ const Index = () => {
   const featuredAssessments = getFeaturedAssessments();
   
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-light via-white to-purple-light/30">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
+      <header className="bg-white/90 backdrop-blur-md border-b border-primary/10 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <Sparkles className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-800">PathFinder</span>
+            <div className="p-2 bg-gradient-primary rounded-xl">
+              <Sparkles className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">PathFinder</span>
           </div>
           <nav className="hidden md:flex space-x-6">
-            <Link to="/assessments" className="text-gray-600 hover:text-blue-600 transition-colors">Assessments</Link>
-            <Link to="/about" className="text-gray-600 hover:text-blue-600 transition-colors">About</Link>
-            <Link to="/blog" className="text-gray-600 hover:text-blue-600 transition-colors">Blog</Link>
+            <Link to="/assessments" className="text-muted-foreground hover:text-primary transition-colors font-medium">Assessments</Link>
+            <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors font-medium">About</Link>
+            <Link to="/blog" className="text-muted-foreground hover:text-primary transition-colors font-medium">Blog</Link>
           </nav>
         </div>
       </header>
@@ -29,52 +32,60 @@ const Index = () => {
       {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-6 bg-blue-100 text-blue-700 hover:bg-blue-100" variant="secondary">
+          <Badge className="mb-6 bg-gradient-primary text-white hover:opacity-90 border-0 px-4 py-2" variant="secondary">
             ✨ Trusted by 100,000+ Students Worldwide
           </Badge>
           
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Wondering What to Study,{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
+            <span className="bg-gradient-to-r from-primary via-coral to-accent bg-clip-text text-transparent">
               Learn, or Do Next?
             </span>
           </h1>
           
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
             Discover your perfect academic and career path with our research-backed assessments. 
             Get personalized insights across all fields and life stages - completely free.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/assessments">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg">
+              <Button size="lg" className="bg-gradient-primary hover:opacity-90 text-white px-8 py-4 text-lg border-0 shadow-lg hover:shadow-xl transition-all">
                 Take Your First Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
             <Link to="/about">
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-blue-200 hover:bg-blue-50">
+              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-primary/20 hover:bg-purple-light text-primary hover:text-primary">
                 Learn More
               </Button>
             </Link>
           </div>
 
           {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-gray-500">
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
-              <Clock className="h-4 w-4 text-blue-500" />
+              <div className="p-1 bg-coral/10 rounded-full">
+                <Clock className="h-4 w-4 text-coral" />
+              </div>
               <span>5-15 minutes</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <div className="p-1 bg-accent/10 rounded-full">
+                <CheckCircle className="h-4 w-4 text-accent" />
+              </div>
               <span>Research-backed</span>
             </div>
             <div className="flex items-center gap-2">
-              <Award className="h-4 w-4 text-yellow-500" />
+              <div className="p-1 bg-primary/10 rounded-full">
+                <Award className="h-4 w-4 text-primary" />
+              </div>
               <span>100% Free</span>
             </div>
             <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-purple-500" />
+              <div className="p-1 bg-coral/10 rounded-full">
+                <Users className="h-4 w-4 text-coral" />
+              </div>
               <span>All fields covered</span>
             </div>
           </div>
@@ -82,13 +93,13 @@ const Index = () => {
       </section>
 
       {/* Featured Assessments */}
-      <section className="py-16 px-4 bg-white/50">
+      <section className="py-16 px-4 bg-white/60 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Start Your Discovery Journey
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Popular assessments across different life stages and interests. Find the one that resonates with you.
             </p>
           </div>
@@ -101,7 +112,7 @@ const Index = () => {
 
           <div className="text-center">
             <Link to="/assessments">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white px-8">
+              <Button size="lg" className="bg-gradient-secondary hover:opacity-90 text-white px-8 border-0 shadow-lg hover:shadow-xl transition-all">
                 Explore All Assessments
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -114,125 +125,125 @@ const Index = () => {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Complete Coverage for Every Stage of Life
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               From high school stream selection to career pivots, we've got assessments for every major decision point in your educational and professional journey.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="group hover:shadow-lg transition-all duration-300 border-blue-100 hover:border-blue-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-primary/10 hover:border-primary/30 bg-gradient-to-br from-white to-purple-light/20">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-blue-100 rounded-full w-fit group-hover:bg-blue-200 transition-colors">
-                  <Target className="h-6 w-6 text-blue-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-primary rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Target className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">High School Students</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">High School Students</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Stream selection, entrance exam guidance, and career exploration for grades 9-12.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Science Stream</Badge>
-                  <Badge variant="secondary" className="text-xs">JEE/NEET</Badge>
-                  <Badge variant="secondary" className="text-xs">Commerce</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">Science Stream</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">JEE/NEET</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Commerce</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-green-100 hover:border-green-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-accent/10 hover:border-accent/30 bg-gradient-to-br from-white to-accent/5">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-green-100 rounded-full w-fit group-hover:bg-green-200 transition-colors">
-                  <Lightbulb className="h-6 w-6 text-green-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-to-r from-accent to-primary rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Lightbulb className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">College Students</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">College Students</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Engineering specializations, skill development, and career planning for undergraduates.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Programming</Badge>
-                  <Badge variant="secondary" className="text-xs">Specialization</Badge>
-                  <Badge variant="secondary" className="text-xs">Internships</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">Programming</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">Specialization</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Internships</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-purple-100 hover:border-purple-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-coral/10 hover:border-coral/30 bg-gradient-to-br from-white to-coral/5">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-purple-100 rounded-full w-fit group-hover:bg-purple-200 transition-colors">
-                  <Brain className="h-6 w-6 text-purple-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-secondary rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Brain className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">Graduates & Professionals</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">Graduates & Professionals</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Career transitions, skill upgrades, and industry switches for working professionals.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Career Switch</Badge>
-                  <Badge variant="secondary" className="text-xs">Upskilling</Badge>
-                  <Badge variant="secondary" className="text-xs">Leadership</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">Career Switch</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">Upskilling</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Leadership</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-orange-100 hover:border-orange-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-primary/10 hover:border-primary/30 bg-gradient-to-br from-white to-primary/5">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-orange-100 rounded-full w-fit group-hover:bg-orange-200 transition-colors">
-                  <Compass className="h-6 w-6 text-orange-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-to-r from-coral to-accent rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Compass className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">Creative & Arts</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">Creative & Arts</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Design thinking, artistic mediums, and creative career paths across all art forms.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">UI/UX Design</Badge>
-                  <Badge variant="secondary" className="text-xs">Digital Art</Badge>
-                  <Badge variant="secondary" className="text-xs">Music</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">UI/UX Design</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">Digital Art</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Music</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-teal-100 hover:border-teal-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-accent/10 hover:border-accent/30 bg-gradient-to-br from-white to-accent/5">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-teal-100 rounded-full w-fit group-hover:bg-teal-200 transition-colors">
-                  <Users className="h-6 w-6 text-teal-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-to-r from-primary to-coral rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Users className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">Business & Commerce</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">Business & Commerce</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Entrepreneurship readiness, business acumen, and finance career assessments.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Entrepreneurship</Badge>
-                  <Badge variant="secondary" className="text-xs">Finance</Badge>
-                  <Badge variant="secondary" className="text-xs">Marketing</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">Entrepreneurship</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">Finance</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Marketing</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="group hover:shadow-lg transition-all duration-300 border-indigo-100 hover:border-indigo-200">
+            <Card className="group hover:shadow-xl transition-all duration-300 border-coral/10 hover:border-coral/30 bg-gradient-to-br from-white to-coral/5">
               <CardHeader className="text-center pb-4">
-                <div className="mx-auto mb-3 p-3 bg-indigo-100 rounded-full w-fit group-hover:bg-indigo-200 transition-colors">
-                  <Award className="h-6 w-6 text-indigo-600" />
+                <div className="mx-auto mb-3 p-3 bg-gradient-to-r from-accent to-primary rounded-full w-fit group-hover:scale-110 transition-transform">
+                  <Award className="h-6 w-6 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold">International Opportunities</CardTitle>
+                <CardTitle className="text-lg font-semibold text-foreground">International Opportunities</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 text-center mb-4">
+                <p className="text-sm text-muted-foreground text-center mb-4">
                   Study abroad readiness, global career paths, and international education guidance.
                 </p>
                 <div className="flex flex-wrap gap-1 justify-center">
-                  <Badge variant="secondary" className="text-xs">Study Abroad</Badge>
-                  <Badge variant="secondary" className="text-xs">Scholarships</Badge>
-                  <Badge variant="secondary" className="text-xs">Global Careers</Badge>
+                  <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-0">Study Abroad</Badge>
+                  <Badge variant="secondary" className="text-xs bg-coral/10 text-coral border-0">Scholarships</Badge>
+                  <Badge variant="secondary" className="text-xs bg-accent/10 text-accent border-0">Global Careers</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -241,60 +252,60 @@ const Index = () => {
       </section>
 
       {/* Social Proof & Testimonials */}
-      <section className="py-16 px-4 bg-white/50">
+      <section className="py-16 px-4 bg-white/60 backdrop-blur-sm">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">What Students Say</h2>
-            <p className="text-lg text-gray-600">Real feedback from students who found their path</p>
+            <h2 className="text-3xl font-bold text-foreground mb-4">What Students Say</h2>
+            <p className="text-lg text-muted-foreground">Real feedback from students who found their path</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="bg-gradient-to-br from-blue-50 to-white border-blue-100">
+            <Card className="bg-gradient-to-br from-primary/5 to-white border-primary/20 hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="flex mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="h-4 w-4 fill-coral text-coral" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-foreground mb-4">
                   "Finally understood why I was struggling with programming. The assessment helped me switch to UX design - best decision ever!"
                 </p>
-                <div className="text-sm text-gray-500">
-                  <p className="font-semibold">Priya S.</p>
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground">Priya S.</p>
                   <p>Engineering Student</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-green-50 to-white border-green-100">
+            <Card className="bg-gradient-to-br from-accent/5 to-white border-accent/20 hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="flex mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="h-4 w-4 fill-coral text-coral" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-foreground mb-4">
                   "The career assessment showed me I'm perfect for data analysis. Now I'm interning at a tech startup!"
                 </p>
-                <div className="text-sm text-gray-500">
-                  <p className="font-semibold">Rahul K.</p>
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground">Rahul K.</p>
                   <p>CS Graduate</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-purple-50 to-white border-purple-100">
+            <Card className="bg-gradient-to-br from-coral/5 to-white border-coral/20 hover:shadow-lg transition-all">
               <CardContent className="p-6">
                 <div className="flex mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    <Star key={i} className="h-4 w-4 fill-coral text-coral" />
                   ))}
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-foreground mb-4">
                   "Saved me from making a costly mistake. Almost switched streams until this assessment revealed my true strengths."
                 </p>
-                <div className="text-sm text-gray-500">
-                  <p className="font-semibold">Ananya M.</p>
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-semibold text-foreground">Ananya M.</p>
                   <p>Electronics Engineering</p>
                 </div>
               </CardContent>
@@ -304,47 +315,50 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
-        <div className="container mx-auto text-center max-w-3xl">
+      <section className="py-20 px-4 bg-gradient-primary relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className="container mx-auto text-center max-w-3xl relative">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Discover Your Path?
           </h2>
-          <p className="text-xl text-blue-100 mb-8">
+          <p className="text-xl text-white/90 mb-8">
             Join thousands of students who've found clarity about their future. Start with any assessment - it's completely free.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/assessments">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 px-8 py-4 text-lg font-semibold">
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all">
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
           </div>
 
-          <p className="text-blue-100 text-sm mt-6">
+          <p className="text-white/80 text-sm mt-6">
             No signup required • Takes 5-10 minutes • Get instant results
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-4">
+      <footer className="bg-foreground text-white py-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Brain className="h-6 w-6 text-blue-400" />
+                <div className="p-2 bg-gradient-primary rounded-xl">
+                  <Brain className="h-5 w-5 text-white" />
+                </div>
                 <span className="text-xl font-bold">PathFinder</span>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-white/70 text-sm">
                 Helping students discover their perfect academic and career paths through research-backed assessments.
               </p>
             </div>
             
             <div>
               <h3 className="font-semibold mb-4">Assessments</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-white/70">
                 <li><Link to="/assessments" className="hover:text-white transition-colors">Skills & Software</Link></li>
                 <li><Link to="/assessments" className="hover:text-white transition-colors">Career & Roles</Link></li>
                 <li><Link to="/assessments" className="hover:text-white transition-colors">Subject Fit</Link></li>
@@ -354,7 +368,7 @@ const Index = () => {
             
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
+              <ul className="space-y-2 text-sm text-white/70">
                 <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
@@ -364,17 +378,21 @@ const Index = () => {
             
             <div>
               <h3 className="font-semibold mb-4">Connect</h3>
-              <p className="text-gray-400 text-sm mb-4">
+              <p className="text-white/70 text-sm mb-4">
                 Follow us for the latest updates and career insights.
               </p>
               <div className="flex space-x-4">
-                <Users className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
-                <Brain className="h-5 w-5 text-gray-400 hover:text-white cursor-pointer transition-colors" />
+                <div className="p-2 bg-white/10 rounded-lg hover:bg-white/20 cursor-pointer transition-colors">
+                  <Users className="h-4 w-4 text-white" />
+                </div>
+                <div className="p-2 bg-white/10 rounded-lg hover:bg-white/20 cursor-pointer transition-colors">
+                  <Brain className="h-4 w-4 text-white" />
+                </div>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
+          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/70">
             <p>&copy; 2024 PathFinder. All rights reserved. • Built with ❤️ for students</p>
           </div>
         </div>
