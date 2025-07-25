@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { AssessmentIntro } from "@/components/AssessmentIntro";
-import { QuestionCard } from "@/components/QuestionCard";
-import { AssessmentResults } from "@/components/AssessmentResults";
-import { ProgressBar } from "@/components/ProgressBar";
-import { SectionTabs } from "@/components/SectionTabs";
-import { assessmentSections, getTotalQuestions } from "@/data/questions";
-import { calculateAssessmentResults } from "@/utils/scoring";
-import { AssessmentAnswer, UserProgress, AssessmentResults as Results } from "@/types/assessment";
+import { AssessmentIntro } from "../components/AssessmentIntro";
+import { QuestionCard } from "../components/QuestionCard";
+import { AssessmentResults } from "../components/AssessmentResults";
+import { ProgressBar } from "../components/ProgressBar";
+import { SectionTabs } from "../components/SectionTabs";
+import { assessmentSections, getTotalQuestions } from "../data/questions";
+import { calculateAssessmentResults } from "../utils/scoring";
+import { AssessmentAnswer, UserProgress, AssessmentResults as Results } from "../types/assessment";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import AssessmentLayout from "../../../../components/AssessmentLayout";
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -123,7 +124,7 @@ const Index = () => {
   const questionNumber = answers.length + 1;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <AssessmentLayout>
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
@@ -247,7 +248,7 @@ const Index = () => {
           </div>
         )}
       </div>
-    </div>
+    </AssessmentLayout>
   );
 };
 

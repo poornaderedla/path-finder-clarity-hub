@@ -9,8 +9,7 @@ import PsychometricSection from '../components/PsychometricSection';
 import TechnicalSection from '../components/TechnicalSection';
 import WiscarSection from '../components/WiscarSection';
 import ResultsSection from '../components/ResultsSection';
-import Header from "../../../../components/Header";
-import Footer from "../../../../components/Footer";
+import AssessmentLayout from "../../../../components/AssessmentLayout";
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState('intro');
@@ -89,13 +88,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
-      <Header logoType="sparkles" navLinks={[
-        { to: "/", label: "Home" },
-        { to: "/assessments", label: "Assessments" },
-        { to: "/about", label: "About" },
-        { to: "/blog", label: "Blog" },
-      ]} />
+    <AssessmentLayout>
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -148,8 +141,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8 flex-1">
         {renderCurrentSection()}
       </div>
-      <Footer />
-    </div>
+    </AssessmentLayout>
   );
 };
 

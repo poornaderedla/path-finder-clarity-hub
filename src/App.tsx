@@ -12,6 +12,7 @@ import GoogleCloudPlatformAssessment from "./pages/assessments/GoogleCloudPlatfo
 import BlockchainAssessment from "./pages/assessments/Blockchain/pages/Index";
 import FullStackPythonAssessment from "./pages/assessments/fullstackpython/pages/Index";
 import BusinessAnalystAssessment from "./pages/assessments/bussinessanalyst/pages/Index";
+import SnowflakeAssessment from "./pages/assessments/snowflake/App";
 
 
 const queryClient = new QueryClient();
@@ -33,6 +34,8 @@ const App = () => (
           <Route path="/assessments/full-stack-python/*" element={<FullStackPythonAssessment />} />
           {/* Direct route for Business Analyst assessment */}
           <Route path="/assessments/business-analyst/*" element={<BusinessAnalystAssessment />} />
+          {/* Direct route for Snowflake assessment */}
+          <Route path="/assessments/snowflake/*" element={<SnowflakeAssessment />} />
           {/* Add more assessment routes here, e.g. /assessments/aws, /assessments/azure, etc. */}
           <Route path="/assessment/:id" element={<Assessment />} />
           <Route path="/results/:id" element={<Results />} />

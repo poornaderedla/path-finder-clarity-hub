@@ -8,8 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { CheckCircle, Brain, Target, TrendingUp, Award, BookOpen, Users, BarChart3, ArrowRight, Clock, Star, XCircle, AlertTriangle, ExternalLink } from 'lucide-react';
-import Header from '../../../../components/Header';
-import Footer from '../../../../components/Footer';
+import AssessmentLayout from "../../../../components/AssessmentLayout";
 
 const Index = () => {
   const [currentSection, setCurrentSection] = useState(0);
@@ -906,13 +905,7 @@ const Index = () => {
   const progress = ((currentSection + 1) / sections.length) * 100;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 flex flex-col">
-      <Header logoType="sparkles" navLinks={[
-        { to: "/", label: "Home" },
-        { to: "/assessments", label: "Assessments" },
-        { to: "/about", label: "About" },
-        { to: "/blog", label: "Blog" },
-      ]} />
+    <AssessmentLayout>
       {/* Top Assessment Header Section */}
       <div className="bg-white shadow-sm border-b">
         <div className="container mx-auto px-4 py-4">
@@ -972,8 +965,7 @@ const Index = () => {
           {currentSection === 4 && <ResultsSection />}
         </div>
       </div>
-      <Footer />
-    </div>
+    </AssessmentLayout>
   );
 };
 

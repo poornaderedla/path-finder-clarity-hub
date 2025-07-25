@@ -1,5 +1,5 @@
-import { AssessmentAnswer, AssessmentResults, WISCARScores } from '@/types/assessment';
-import { getAllQuestions } from '@/data/questions';
+import { AssessmentAnswer, AssessmentResults, WISCARScores } from '../types/assessment';
+import { getAllQuestions } from '../data/questions';
 
 export const calculateAssessmentResults = (answers: AssessmentAnswer[]): AssessmentResults => {
   const questions = getAllQuestions();
