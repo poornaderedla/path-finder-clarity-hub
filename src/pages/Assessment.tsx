@@ -132,7 +132,7 @@ const Assessment = () => {
   const canProceed = answers[currentQuestion] !== undefined;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-green-100">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -255,7 +255,7 @@ const Assessment = () => {
 
         {/* Encouragement Message */}
         <div className="text-center mt-8 max-w-2xl mx-auto">
-          <Card className="bg-gradient-to-r from-blue-50 to-green-50 border-blue-100">
+          <Card className="bg-gradient-to-r from-blue-200 to-green-100 border-blue-200">
             <CardContent className="p-6">
               <div className="flex items-center justify-center space-x-2 mb-3">
                 <Users className="h-5 w-5 text-blue-600" />

@@ -6,15 +6,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Search, Filter, ArrowLeft, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import AssessmentCard from "../components/AssessmentCard";
-import { assessmentCategories, getAllAssessments } from "../data/assessments";
+import { assessmentCategories, assessments } from "@/data/assessments";
 
 const Assessments = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
 
-  const allAssessments = getAllAssessments();
+  // Replace getAllAssessments with direct use of assessments
+  const allAssessments = assessments;
   
+  // Debug logs
+  console.log('assessmentCategories:', assessmentCategories);
+  console.log('allAssessments:', allAssessments);
+
   const filteredAssessments = allAssessments.filter(assessment => {
     const matchesCategory = !selectedCategory || assessment.category === selectedCategory;
     const matchesSearch = !searchQuery || 
@@ -26,8 +31,11 @@ const Assessments = () => {
     return matchesCategory && matchesSearch && matchesDifficulty;
   });
 
-  const currentCategory = selectedCategory ? 
-    assessmentCategories.find(cat => cat.title === selectedCategory) : null;
+  // Debug logs for filter state
+  console.log('selectedCategory:', selectedCategory);
+  console.log('filteredAssessments:', filteredAssessments);
+
+  const currentCategory = selectedCategory ? selectedCategory : null;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
@@ -50,38 +58,21 @@ const Assessments = () => {
           </div>
         </div>
       </header>
+      {/* Secondary Navigation Bar */}
+      <nav className="bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-primary-100 sticky top-[64px] z-40">
+        <div className="container mx-auto px-4 flex space-x-8 overflow-x-auto">
+          <button className="py-4 px-2 text-primary-600 border-b-2 border-primary-600 font-semibold whitespace-nowrap focus:outline-none">Computer Science</button>
+        </div>
+      </nav>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
-          <Link to="/" className="hover:text-blue-600 transition-colors">Home</Link>
-          <span>/</span>
-          {currentCategory ? (
-            <>
-              <button 
-                onClick={() => setSelectedCategory(null)}
-                className="hover:text-blue-600 transition-colors"
-              >
-                Assessments
-              </button>
-              <span>/</span>
-              <span className="text-gray-800 font-medium">{currentCategory.title}</span>
-            </>
-          ) : (
-            <span className="text-gray-800 font-medium">Assessments</span>
-          )}
-        </div>
-
-        {/* Page Header */}
+        {/* Hero Section - Only Computer Science */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            {currentCategory ? currentCategory.title : "All Assessments"}
+            Computer Science
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {currentCategory ? 
-              currentCategory.description : 
-              "Comprehensive assessments to guide your educational and career journey across all fields and stages of life."
-            }
+            Explore a wide range of Computer Science assessments to discover your strengths, interests, and ideal learning paths.
           </p>
         </div>
 
@@ -131,20 +122,35 @@ const Assessments = () => {
             )}
           </div>
 
-          {/* Category Filter */}
+          {/* Category Filter Section (moved up) */}
           {!selectedCategory && (
-            <div className="flex flex-wrap gap-2">
-              {assessmentCategories.map((category) => (
-                <Button
-                  key={category.id}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setSelectedCategory(category.title)}
-                  className="hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700"
-                >
-                  {category.title}
-                </Button>
-              ))}
+            <div className="w-full">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4">Explore by Category</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {assessmentCategories.map((category) => (
+                  <Card
+                    key={category}
+                    className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 overflow-hidden"
+                    // Defensive: Only trigger on direct card click
+                    onClick={e => {
+                      // Only trigger if the card itself is clicked, not a child
+                      if (e.target === e.currentTarget || (e.target as HTMLElement).closest('.card-content')) {
+                        setSelectedCategory(category);
+                      }
+                    }}
+                  >
+                    {/* Removed overlay to prevent dimming */}
+                    <CardContent className="p-4 relative card-content group-hover:bg-blue-50 transition-colors">
+                      <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+                        {category}
+                      </h3>
+                      <Badge variant="secondary" className="text-xs">
+                        {allAssessments.filter(a => a.category === category).length} assessment{allAssessments.filter(a => a.category === category).length !== 1 ? 's' : ''}
+                      </Badge>
+                    </CardContent>
+                  </Card>
+                ))}
+        </div>
             </div>
           )}
         </div>
@@ -203,35 +209,7 @@ const Assessments = () => {
         )}
 
         {/* Featured Categories (when not in category view) */}
-        {!selectedCategory && (
-          <section className="mt-16">
-            <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-              Explore by Category
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {assessmentCategories.map((category) => (
-                <Card
-                  key={category.id}
-                  className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 overflow-hidden"
-                  onClick={() => setSelectedCategory(category.title)}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-5 group-hover:opacity-10 transition-opacity`} />
-                  <CardContent className="p-6 relative">
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                      {category.title}
-                    </h3>
-                    <p className="text-sm text-gray-600 mb-4">
-                      {category.description}
-                    </p>
-                    <Badge variant="secondary" className="text-xs">
-                      {category.assessments.length} assessment{category.assessments.length !== 1 ? 's' : ''}
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </section>
-        )}
+        {/* Removed old Explore by Category section from the bottom */}
 
         {/* CTA Section */}
         <section className="mt-16 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl p-8 text-center text-white">

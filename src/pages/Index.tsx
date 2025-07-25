@@ -12,15 +12,14 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50">
-      {/* Header */}
       <header className="bg-white/90 backdrop-blur-md border-b border-primary-100 sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <Link to="/" className="flex items-center space-x-2">
           <div className="flex items-center space-x-2">
-            <div className="p-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl">
-              <Sparkles className="h-6 w-6 text-white" />
+              <Sparkles className="h-8 w-8 text-blue-600" />
+              <span className="text-2xl font-bold text-gray-800">PathFinder</span>
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">PathFinder</span>
-          </div>
+          </Link>
           <nav className="hidden md:flex space-x-6">
             <Link to="/assessments" className="text-slate-600 hover:text-primary-600 transition-colors font-medium">Assessments</Link>
             <Link to="/about" className="text-slate-600 hover:text-primary-600 transition-colors font-medium">About</Link>
@@ -29,25 +28,21 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
           <Badge className="mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 border-0 px-4 py-2" variant="secondary">
             ✨ Trusted by 100,000+ Students Worldwide
           </Badge>
-          
           <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
             Wondering What to Study,{" "}
             <span className="bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-600 bg-clip-text text-transparent">
               Learn, or Do Next?
             </span>
           </h1>
-          
           <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
             Discover your perfect academic and career path with our research-backed assessments. 
             Get personalized insights across all fields and life stages - completely free.
           </p>
-
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link to="/assessments">
               <Button size="lg" className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:opacity-90 text-white px-8 py-4 text-lg border-0 shadow-lg hover:shadow-xl transition-all">
@@ -61,7 +56,6 @@ const Index = () => {
               </Button>
             </Link>
           </div>
-
           {/* Trust Indicators */}
           <div className="flex flex-wrap justify-center gap-8 text-sm text-slate-600">
             <div className="flex items-center gap-2">
@@ -103,13 +97,12 @@ const Index = () => {
               Popular assessments across different life stages and interests. Find the one that resonates with you.
             </p>
           </div>
-
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {featuredAssessments.map((assessment) => (
               <AssessmentCard key={assessment.id} {...assessment} />
             ))}
           </div>
-
           <div className="text-center">
             <Link to="/assessments">
               <Button size="lg" className="bg-gradient-to-r from-secondary-500 to-accent-500 hover:opacity-90 text-white px-8 border-0 shadow-lg hover:shadow-xl transition-all">
@@ -117,11 +110,11 @@ const Index = () => {
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </Link>
-          </div>
-        </div>
+          </div> 
       </section>
+          
 
-      {/* Comprehensive Coverage */}
+     
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
@@ -132,7 +125,6 @@ const Index = () => {
               From high school stream selection to career pivots, we've got assessments for every major decision point in your educational and professional journey.
             </p>
           </div>
-
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="group hover:shadow-xl transition-all duration-300 border-primary-100 hover:border-primary-200 bg-gradient-to-br from-white to-primary-50">
               <CardHeader className="text-center pb-4">
@@ -258,7 +250,6 @@ const Index = () => {
             <h2 className="text-3xl font-bold text-slate-900 mb-4">What Students Say</h2>
             <p className="text-lg text-slate-600">Real feedback from students who found their path</p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-6">
             <Card className="bg-gradient-to-br from-primary-50 to-white border-primary-100 hover:shadow-lg transition-all">
               <CardContent className="p-6">
@@ -316,7 +307,7 @@ const Index = () => {
 
       {/* CTA Section */}
       <section className="py-20 px-4 bg-gradient-to-r from-primary-500 to-secondary-500 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.05\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        <div className='absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg width= 60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg %3E%3Cg fill=none fill-rule= evenodd %3E%3Cg fill= %23ffffff  fill-opacity= 0.05 %3E%3Ccircle cx=30 cy=30 r=2 /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] opacity-30'>
         <div className="container mx-auto text-center max-w-3xl relative">
           <h2 className="text-4xl font-bold text-white mb-6">
             Ready to Discover Your Path?
@@ -324,7 +315,6 @@ const Index = () => {
           <p className="text-xl text-white/90 mb-8">
             Join thousands of students who've found clarity about their future. Start with any assessment - it's completely free.
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/assessments">
               <Button size="lg" className="bg-white text-primary-600 hover:bg-white/90 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all">
@@ -333,14 +323,14 @@ const Index = () => {
               </Button>
             </Link>
           </div>
-
           <p className="text-white/80 text-sm mt-6">
             No signup required • Takes 5-10 minutes • Get instant results
           </p>
         </div>
+        </div>
       </section>
 
-      {/* Footer */}
+    
       <footer className="bg-slate-900 text-white py-12 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="grid md:grid-cols-4 gap-8">
@@ -355,7 +345,6 @@ const Index = () => {
                 Helping students discover their perfect academic and career paths through research-backed assessments.
               </p>
             </div>
-            
             <div>
               <h3 className="font-semibold mb-4">Assessments</h3>
               <ul className="space-y-2 text-sm text-white/70">
@@ -365,7 +354,6 @@ const Index = () => {
                 <li><Link to="/assessments" className="hover:text-white transition-colors">Stream Switching</Link></li>
               </ul>
             </div>
-            
             <div>
               <h3 className="font-semibold mb-4">Resources</h3>
               <ul className="space-y-2 text-sm text-white/70">
@@ -375,7 +363,6 @@ const Index = () => {
                 <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
               </ul>
             </div>
-            
             <div>
               <h3 className="font-semibold mb-4">Connect</h3>
               <p className="text-white/70 text-sm mb-4">
@@ -391,9 +378,8 @@ const Index = () => {
               </div>
             </div>
           </div>
-          
           <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/70">
-            <p>&copy; 2024 PathFinder. All rights reserved. • Built with ❤️ for students</p>
+            <p>2024 PathFinder. All rights reserved. • Built with ❤️ for students</p>
           </div>
         </div>
       </footer>
@@ -402,3 +388,4 @@ const Index = () => {
 };
 
 export default Index;
+

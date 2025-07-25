@@ -63,19 +63,27 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				coral: {
-					DEFAULT: 'hsl(var(--coral))',
-					foreground: 'hsl(var(--coral-foreground))'
+				// Thinkera custom colors
+				'thinkera-purple': {
+					light: '#9b87f5',
+					DEFAULT: '#7E69AB',
+					dark: '#6E59A5'
 				},
-				teal: {
-					DEFAULT: 'hsl(var(--teal))',
-					foreground: 'hsl(var(--teal-foreground))'
-				}
+				'thinkera-blue': {
+					light: '#33C3F0',
+					DEFAULT: '#1EAEDB',
+					dark: '#0FA0CE'
+				},
+				'thinkera-dark': '#1A1F2C'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+				inter: ['Inter', 'sans-serif']
 			},
 			keyframes: {
 				'accordion-down': {
@@ -98,6 +106,11 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out'
+			},
+			backgroundImage: {
+				'gradient-hero': 'linear-gradient(to right, #6E59A5, #1EAEDB)',
+				'gradient-card': 'linear-gradient(135deg, #8B5CF6 0%, #1EAEDB 100%)',
+				'gradient-cta': 'linear-gradient(90deg, #8B5CF6 0%, #3B82F6 100%)'
 			}
 		}
 	},

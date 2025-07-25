@@ -4,12 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import Assessments from "./pages/Assessments";
-import Assessment from "./pages/Assessment";
-import Results from "./pages/Results";
 import NotFound from "./pages/NotFound";
-import GoogleCloudPlatformAssessment from "./pages/assessments/GoogleCloudPlatform/pages/Index";
-
 
 const queryClient = new QueryClient();
 
@@ -21,12 +16,6 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/assessments" element={<Assessments />} />
-          {/* Direct route for Google Cloud Platform assessment */}
-          <Route path="/assessments/google-cloud-platform/*" element={<GoogleCloudPlatformAssessment />} />
-          {/* Add more assessment routes here, e.g. /assessments/aws, /assessments/azure, etc. */}
-          <Route path="/assessment/:id" element={<Assessment />} />
-          <Route path="/results/:id" element={<Results />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
