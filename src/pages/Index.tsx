@@ -6,27 +6,19 @@ import { ArrowRight, Users, Clock, Award, Star, CheckCircle, Brain, Target, Comp
 import { Link } from "react-router-dom";
 import AssessmentCard from "../components/AssessmentCard";
 import { getFeaturedAssessments } from "../data/assessments";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Index = () => {
   const featuredAssessments = getFeaturedAssessments();
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50">
-      <header className="bg-white/90 backdrop-blur-md border-b border-primary-100 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-          <div className="flex items-center space-x-2">
-              <Sparkles className="h-8 w-8 text-blue-600" />
-              <span className="text-2xl font-bold text-gray-800">PathFinder</span>
-            </div>
-          </Link>
-          <nav className="hidden md:flex space-x-6">
-            <Link to="/assessments" className="text-slate-600 hover:text-primary-600 transition-colors font-medium">Assessments</Link>
-            <Link to="/about" className="text-slate-600 hover:text-primary-600 transition-colors font-medium">About</Link>
-            <Link to="/blog" className="text-slate-600 hover:text-primary-600 transition-colors font-medium">Blog</Link>
-          </nav>
-        </div>
-      </header>
+      <Header logoType="sparkles" navLinks={[
+        { to: "/assessments", label: "Assessments" },
+        { to: "/about", label: "About" },
+        { to: "/blog", label: "Blog" },
+      ]} />
 
       <section className="py-20 px-4">
         <div className="container mx-auto text-center max-w-4xl">
@@ -331,58 +323,7 @@ const Index = () => {
       </section>
 
     
-      <footer className="bg-slate-900 text-white py-12 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="p-2 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl">
-                  <Brain className="h-5 w-5 text-white" />
-                </div>
-                <span className="text-xl font-bold">PathFinder</span>
-              </div>
-              <p className="text-white/70 text-sm">
-                Helping students discover their perfect academic and career paths through research-backed assessments.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Assessments</h3>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link to="/assessments" className="hover:text-white transition-colors">Skills & Software</Link></li>
-                <li><Link to="/assessments" className="hover:text-white transition-colors">Career & Roles</Link></li>
-                <li><Link to="/assessments" className="hover:text-white transition-colors">Subject Fit</Link></li>
-                <li><Link to="/assessments" className="hover:text-white transition-colors">Stream Switching</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Resources</h3>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li><Link to="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Connect</h3>
-              <p className="text-white/70 text-sm mb-4">
-                Follow us for the latest updates and career insights.
-              </p>
-              <div className="flex space-x-4">
-                <div className="p-2 bg-white/10 rounded-lg hover:bg-white/20 cursor-pointer transition-colors">
-                  <Users className="h-4 w-4 text-white" />
-                </div>
-                <div className="p-2 bg-white/10 rounded-lg hover:bg-white/20 cursor-pointer transition-colors">
-                  <Brain className="h-4 w-4 text-white" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/70">
-            <p>2024 PathFinder. All rights reserved. • Built with ❤️ for students</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

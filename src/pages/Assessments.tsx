@@ -7,6 +7,8 @@ import { Search, Filter, ArrowLeft, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import AssessmentCard from "../components/AssessmentCard";
 import { assessmentCategories, assessments } from "@/data/assessments";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Assessments = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -39,25 +41,12 @@ const Assessments = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="flex items-center space-x-2">
-                <Sparkles className="h-8 w-8 text-blue-600" />
-                <span className="text-2xl font-bold text-gray-800">PathFinder</span>
-              </div>
-            </Link>
-            <nav className="hidden md:flex space-x-6">
-              <Link to="/" className="text-gray-600 hover:text-blue-600 transition-colors">Home</Link>
-              <Link to="/assessments" className="text-blue-600 font-medium">Assessments</Link>
-              <Link to="/about" className="text-gray-600 hover:text-blue-600 transition-colors">About</Link>
-              <Link to="/blog" className="text-gray-600 hover:text-blue-600 transition-colors">Blog</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header logoType="sparkles" navLinks={[
+        { to: "/", label: "Home" },
+        { to: "/assessments", label: "Assessments", active: true },
+        { to: "/about", label: "About" },
+        { to: "/blog", label: "Blog" },
+      ]} />
       {/* Secondary Navigation Bar */}
       <nav className="bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-primary-100 sticky top-[64px] z-40">
         <div className="container mx-auto px-4 flex space-x-8 overflow-x-auto">
@@ -224,6 +213,7 @@ const Assessments = () => {
           </Button>
         </section>
       </div>
+      <Footer />
     </div>
   );
 };

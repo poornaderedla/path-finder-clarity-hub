@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Share2, Download, RefreshCw, ExternalLink, CheckCircle, AlertCircle, TrendingUp, Brain, Target, Lightbulb, ArrowRight } from "lucide-react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Results = () => {
   const { id } = useParams();
@@ -107,25 +109,12 @@ const Results = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-800">PathFinder</span>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="flex items-center space-x-2">
-              <Share2 className="h-4 w-4" />
-              <span>Share</span>
-            </Button>
-            <Button variant="outline" size="sm" className="flex items-center space-x-2">
-              <Download className="h-4 w-4" />
-              <span>Download</span>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header logoType="brain" navLinks={[
+        { to: "/", label: "Home" },
+        { to: "/assessments", label: "Assessments" },
+        { to: "/about", label: "About" },
+        { to: "/blog", label: "Blog" },
+      ]} rightContent={<></>} />
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Results Header */}
@@ -311,6 +300,7 @@ const Results = () => {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </div>
   );
 };

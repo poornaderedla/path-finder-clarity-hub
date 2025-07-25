@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { ArrowLeft, ArrowRight, Brain, CheckCircle, Clock, Users } from "lucide-react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const Assessment = () => {
   const { id } = useParams();
@@ -133,24 +135,12 @@ const Assessment = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-200 via-white to-green-100">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <Link to="/" className="flex items-center space-x-2">
-            <Brain className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold text-gray-800">PathFinder</span>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <Clock className="h-4 w-4" />
-              <span>{currentAssessment.duration}</span>
-            </div>
-            <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-              Question {currentQuestion + 1} of {currentAssessment.totalQuestions}
-            </Badge>
-          </div>
-        </div>
-      </header>
+      <Header logoType="brain" navLinks={[
+        { to: "/", label: "Home" },
+        { to: "/assessments", label: "Assessments" },
+        { to: "/about", label: "About" },
+        { to: "/blog", label: "Blog" },
+      ]} rightContent={<></>} />
 
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Assessment Header */}
@@ -269,6 +259,7 @@ const Assessment = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
