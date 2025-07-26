@@ -95,6 +95,7 @@ const AssessmentCard: React.FC<AssessmentCardProps> = ({
           <Badge className={getDifficultyColor(difficulty) + ' text-black'} variant="outline">
             {difficulty}
           </Badge>
+          <span className="text-thinkera-purple/60">|</span>
           {tags.slice(0, 3).map((tag, index) => (
             <Badge key={index} variant="outline" className="text-xs border-thinkera-purple/20 text-thinkera-purple hover:bg-thinkera-purple/5">
               {tag}

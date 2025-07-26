@@ -10,8 +10,8 @@ import { AssessmentAnswer, UserProgress, AssessmentResults as Results } from "..
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
-import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
+import { Badge } from "../components/ui/badge";
+import { Progress } from "../components/ui/progress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import AssessmentLayout from "../../../../components/AssessmentLayout";
 
