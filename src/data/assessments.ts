@@ -382,6 +382,18 @@ import {
       tags: ['Medical Coding', 'Healthcare', 'Compliance'],
       category: 'Medical',
       gradient: 'from-primary to-coral'
+    },
+    {
+      id: 'servicenow',
+      title: 'ServiceNow',
+      description: 'Assess your skills in ServiceNow platform administration and development.',
+      icon: Cog,
+      duration: '10-15 mins',
+      difficulty: 'Intermediate',
+      userCount: '3K+',
+      tags: ['ServiceNow', 'ITSM', 'Platform Development'],
+      category: 'Platform',
+      gradient: 'from-primary to-accent'
     }
   ];
   

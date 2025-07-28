@@ -25,7 +25,14 @@ import GenAIAssessment from "./pages/assessments/GenAI/pages/Index";
 import MERNStackAssessment from "./pages/assessments/MERNStack/pages/Index";
 import MultiCloudEngineerAssessment from "./pages/assessments/MultiCloudEngineer/pages/Index";
 import ScrumMasterAssessment from "./pages/assessments/ScrumMaster/pages/Index";
-
+import AWSAssessment from "./pages/assessments/AWS/pages/Index";
+import FullStackJAVAAssessment from "./pages/assessments/FullStackJAVA/pages/Index";
+import ServicenowAssessment from "./pages/assessments/Servicenow/pages/Index";
+import PowerBIAssessment from "./pages/assessments/PowerBI/pages/Index";
+import Microsoft365Assessment from "./pages/assessments/Microsoft365/pages/Index";
+import DigitalMarketingAssessment from "./pages/assessments/DigitalMarketing/pages/Index";
+import MedicalCodingAssessment from "./pages/assessments/MedicalCoding/pages/Index";
+import ReactJSAssessment from "./pages/assessments/ReactJS/pages/Index";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +79,22 @@ const App = () => (
           <Route path="/assessments/multi-cloud-engineer/*" element={<MultiCloudEngineerAssessment />} />
           {/* Direct route for Scrum Master assessment */}
           <Route path="/assessments/scrum-master/*" element={<ScrumMasterAssessment />} />
+          {/* Direct route for AWS assessment */}
+          <Route path="/assessments/aws/*" element={<AWSAssessment />} />
+          {/* Direct route for Full Stack JAVA assessment */}
+          <Route path="/assessments/full-stack-java/*" element={<FullStackJAVAAssessment />} />
+          {/* Direct route for ServiceNow assessment */}
+          <Route path="/assessments/servicenow/*" element={<ServicenowAssessment />} />
+          {/* Direct route for Power BI & Tableau assessment */}
+          <Route path="/assessments/powerbi-tableau/*" element={<PowerBIAssessment />} />
+          {/* Direct route for Microsoft Dynamics 365 assessment */}
+          <Route path="/assessments/microsoft-dynamics-365/*" element={<Microsoft365Assessment />} />
+          {/* Direct route for Digital Marketing assessment */}
+          <Route path="/assessments/digital-marketing/*" element={<DigitalMarketingAssessment />} />
+          {/* Direct route for Medical Coding assessment */}
+          <Route path="/assessments/medical-coding/*" element={<MedicalCodingAssessment />} />
+          {/* Direct route for React JS assessment */}
+          <Route path="/assessments/react-js/*" element={<ReactJSAssessment />} />
           {/* Add more assessment routes here, e.g. /assessments/aws, /assessments/azure, etc. */}
           <Route path="/assessment/:id" element={<Assessment />} />
           <Route path="/results/:id" element={<Results />} />
