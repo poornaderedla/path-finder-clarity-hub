@@ -33,6 +33,7 @@ import Microsoft365Assessment from "./pages/assessments/Microsoft365/pages/Index
 import DigitalMarketingAssessment from "./pages/assessments/DigitalMarketing/pages/Index";
 import MedicalCodingAssessment from "./pages/assessments/MedicalCoding/pages/Index";
 import ReactJSAssessment from "./pages/assessments/ReactJS/pages/Index";
+import FlutterAssessment from "./pages/assessments/Flutter/pages/Index";
 
 const queryClient = new QueryClient();
 
@@ -95,6 +96,8 @@ const App = () => (
           <Route path="/assessments/medical-coding/*" element={<MedicalCodingAssessment />} />
           {/* Direct route for React JS assessment */}
           <Route path="/assessments/react-js/*" element={<ReactJSAssessment />} />
+          {/* Direct route for Flutter assessment */}
+          <Route path="/assessments/flutter/*" element={<FlutterAssessment />} />
           {/* Add more assessment routes here, e.g. /assessments/aws, /assessments/azure, etc. */}
           <Route path="/assessment/:id" element={<Assessment />} />
           <Route path="/results/:id" element={<Results />} />
