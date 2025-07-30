@@ -1,79 +1,170 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Users, Clock, Award, Star, CheckCircle, Brain, Target, Compass, Lightbulb, Sparkles } from "lucide-react";
+import { AssessmentCard } from "@/components/ui/assessment-card";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { Search, ArrowRight, BookOpen, Users, Award, TrendingUp, Brain, Code, Shield, Cloud, Palette, BarChart, Target, Lightbulb, Compass, Star } from "lucide-react";
 import { Link } from "react-router-dom";
-import AssessmentCard from "../components/AssessmentCard";
-import { getFeaturedAssessments } from "../data/assessments";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { useState } from "react";
 
 const Index = () => {
-  const featuredAssessments = getFeaturedAssessments();
-  
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-secondary-50">
-      <Header logoType="sparkles" navLinks={[
-        { to: "/assessments", label: "Assessments" },
-        { to: "/about", label: "About" },
-        { to: "/blog", label: "Blog" },
-      ]} />
+  const [searchQuery, setSearchQuery] = useState("");
 
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-6 bg-gradient-to-r from-primary-500 to-secondary-500 text-white hover:opacity-90 border-0 px-4 py-2" variant="secondary">
-            ✨ Trusted by 100,000+ Students Worldwide
-          </Badge>
-          <h1 className="text-5xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
-            Wondering What to Study,{" "}
-            <span className="bg-gradient-to-r from-primary-600 via-accent-500 to-secondary-600 bg-clip-text text-transparent">
-              Learn, or Do Next?
-            </span>
-          </h1>
-          <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Discover your perfect academic and career path with our research-backed assessments. 
-            Get personalized insights across all fields and life stages - completely free.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link to="/assessments">
-              <Button size="lg" className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:opacity-90 text-white px-8 py-4 text-lg border-0 shadow-lg hover:shadow-xl transition-all">
-                Take Your First Assessment
+  const featuredAssessments = [
+    {
+      id: "data-science",
+      title: "Data Science Career Assessment",
+      description: "Discover if data science is the right career path for you with our comprehensive evaluation covering statistics, programming, and analytical thinking.",
+      duration: "15-20 mins",
+      participants: "50K+",
+      rating: 4.8,
+      category: "Technology",
+      icon: <BarChart className="h-6 w-6" />
+    },
+    {
+      id: "cyber-security",
+      title: "Cyber Security Assessment",
+      description: "Evaluate your cybersecurity aptitude and learn if this high-demand field matches your skills and interests.",
+      duration: "25-30 mins", 
+      participants: "35K+",
+      rating: 4.9,
+      category: "Security",
+      icon: <Shield className="h-6 w-6" />
+    },
+    {
+      id: "full-stack",
+      title: "Full Stack Development",
+      description: "Test your full-stack development potential across frontend, backend, and database technologies.",
+      duration: "20-25 mins",
+      participants: "75K+", 
+      rating: 4.7,
+      category: "Development",
+      icon: <Code className="h-6 w-6" />
+    },
+    {
+      id: "aws-cloud",
+      title: "Cloud Computing (AWS)",
+      description: "Assess your cloud computing skills and readiness for AWS certification and cloud architecture roles.",
+      duration: "18-22 mins",
+      participants: "40K+",
+      rating: 4.8,
+      category: "Cloud",
+      icon: <Cloud className="h-6 w-6" />
+    },
+    {
+      id: "ux-design",
+      title: "UI/UX Design Assessment",
+      description: "Discover your design thinking abilities and potential in user experience and interface design.",
+      duration: "15-18 mins",
+      participants: "25K+",
+      rating: 4.6,
+      category: "Design",
+      icon: <Palette className="h-6 w-6" />
+    },
+    {
+      id: "ai-ml",
+      title: "AI/ML Engineering",
+      description: "Evaluate your artificial intelligence and machine learning capabilities for the future of technology.",
+      duration: "22-28 mins",
+      participants: "30K+",
+      rating: 4.9,
+      category: "AI/ML",
+      icon: <Brain className="h-6 w-6" />
+    }
+  ];
+
+  const categories = [
+    { name: "Technology", count: "15 assessments", icon: <Code className="h-6 w-6" /> },
+    { name: "Business", count: "8 assessments", icon: <BarChart className="h-6 w-6" /> },
+    { name: "Design", count: "6 assessments", icon: <Palette className="h-6 w-6" /> },
+    { name: "Healthcare", count: "7 assessments", icon: <Award className="h-6 w-6" /> },
+    { name: "Engineering", count: "12 assessments", icon: <Users className="h-6 w-6" /> },
+    { name: "Security", count: "5 assessments", icon: <Shield className="h-6 w-6" /> }
+  ];
+
+  const stats = [
+    { label: "Free Assessments", value: "50+", icon: BookOpen },
+    { label: "Students Helped", value: "100K+", icon: Users },
+    { label: "Success Rate", value: "95%", icon: Award },
+    { label: "Career Growth", value: "85%", icon: TrendingUp }
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+
+      {/* Hero Section - Omni Style */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-10 left-10 h-64 w-64 rounded-full bg-primary/5 blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 h-48 w-48 rounded-full bg-blue-500/5 blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto text-center">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Your career in{' '}
+              <span className="text-gradient">50+ free</span>
+              <br />
+              assessments
+            </h1>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              Discover your perfect career path with comprehensive assessments. 
+              Make informed decisions about your future with data-driven insights.
+            </p>
+            
+            {/* Search Bar - Omni Style */}
+            <div className="max-w-2xl mx-auto mb-8">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search assessments..."
+                  className="h-14 pl-12 pr-4 text-lg border-2 rounded-2xl shadow-card"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="h-12 text-lg px-8 rounded-xl">
+                Start Free Assessment
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-            </Link>
-            <Link to="/about">
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-primary-200 hover:bg-primary-50 text-primary-600 hover:text-primary-600">
-                Learn More
+              <Button variant="outline" size="lg" className="h-12 text-lg px-8 rounded-xl">
+                Explore All Assessments
               </Button>
-            </Link>
+            </div>
           </div>
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-slate-600">
-            <div className="flex items-center gap-2">
-              <div className="p-1 bg-accent-100 rounded-full">
-                <Clock className="h-4 w-4 text-accent-500" />
-              </div>
-              <span>5-15 minutes</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="p-1 bg-secondary-100 rounded-full">
-                <CheckCircle className="h-4 w-4 text-secondary-500" />
-              </div>
-              <span>Research-backed</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="p-1 bg-primary-100 rounded-full">
-                <Award className="h-4 w-4 text-primary-500" />
-              </div>
-              <span>100% Free</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="p-1 bg-accent-100 rounded-full">
-                <Users className="h-4 w-4 text-accent-500" />
-              </div>
-              <span>All fields covered</span>
-            </div>
+        </div>
+      </section>
+
+      {/* Categories Grid - Omni Style */}
+      <section className="py-16 px-4">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {categories.map((category, index) => (
+              <Link
+                key={index}
+                to="/assessments"
+                className="group"
+              >
+                <div className="bg-card rounded-2xl border-2 border-border hover:border-primary/20 p-6 text-center transition-all duration-300 hover:shadow-lg-custom shadow-card">
+                  <div className="flex justify-center mb-4">
+                    <div className="h-12 w-12 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors flex items-center justify-center">
+                      {category.icon}
+                    </div>
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-1">{category.name}</h3>
+                  <p className="text-sm text-muted-foreground">{category.count}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -82,15 +173,15 @@ const Index = () => {
       <section className="py-16 px-4 bg-white/60 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-              Start Your Discovery Journey
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Popular Assessments
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Popular assessments across different life stages and interests. Find the one that resonates with you.
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Start with our most trusted career assessments, used by thousands of students and professionals.
             </p>
           </div>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {featuredAssessments.map((assessment) => (
               <AssessmentCard key={assessment.id} {...assessment} />
             ))}
@@ -298,27 +389,22 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-primary-500 to-secondary-500 relative overflow-hidden">
-        <div className='absolute inset-0 bg-[url("data:image/svg+xml,%3Csvg width= 60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg %3E%3Cg fill=none fill-rule= evenodd %3E%3Cg fill= %23ffffff  fill-opacity= 0.05 %3E%3Ccircle cx=30 cy=30 r=2 /%3E%3C/g%3E%3C/g%3E%3C/svg%3E")] opacity-30'>
-        <div className="container mx-auto text-center max-w-3xl relative">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Discover Your Path?
-          </h2>
-          <p className="text-xl text-white/90 mb-8">
-            Join thousands of students who've found clarity about their future. Start with any assessment - it's completely free.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/assessments">
-              <Button size="lg" className="bg-white text-primary-600 hover:bg-white/90 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all">
-                Start Your Journey
+      <section className="py-20 px-4">
+        <div className="container mx-auto text-center">
+          <div className="max-w-3xl mx-auto bg-card rounded-3xl p-12 shadow-lg-custom border-2 border-border">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to discover your perfect career?
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Join thousands of students and professionals who have found their ideal career path through our assessments.
+            </p>
+            <Button size="lg" className="h-12 text-lg px-8 rounded-xl" asChild>
+              <Link to="/assessments">
+                Get Started for Free
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
-          <p className="text-white/80 text-sm mt-6">
-            No signup required • Takes 5-10 minutes • Get instant results
-          </p>
-        </div>
         </div>
       </section>
 
