@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Assessment as AssessmentType, AssessmentAnswer, AssessmentResult } from '@/types/assessment';
+import { Assessment as AssessmentType, AssessmentAnswer, AssessmentResult } from '../types/assessment';
 import { AssessmentProgress } from './AssessmentProgress';
 import AssessmentIntroduction from './AssessmentIntroduction';
 import { QuestionCard } from './QuestionCard';

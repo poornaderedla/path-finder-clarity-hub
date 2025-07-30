@@ -71,7 +71,7 @@ export function AssessmentLayout({
             </Button>
             
             <Button
-              variant="primary"
+              variant="default"
               onClick={onNext}
               disabled={!canGoNext}
               className="flex items-center gap-2"

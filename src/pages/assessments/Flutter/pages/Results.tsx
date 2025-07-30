@@ -18,7 +18,7 @@ import {
   Star,
   Award
 } from 'lucide-react';
-import { AssessmentScores } from "@/types/assessment";
+import { AssessmentScores } from "../types/assessment";
 
 export default function Results() {
   const location = useLocation();

@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
-import { AssessmentResult } from '@/types/assessment';
+import { AssessmentResult } from '../types/assessment';
 import { CheckCircle, AlertCircle, XCircle, BarChart3, Target, User, Briefcase, BookOpen, Star, ExternalLink, Users, TrendingUp, ArrowRight } from 'lucide-react';
 import { AssessmentProgress } from './AssessmentProgress';
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from 'recharts';

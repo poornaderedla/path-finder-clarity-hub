@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Zap, Users, CheckCircle, ArrowRight, Clock, Target, TrendingUp } from 'lucide-react';
-import { Assessment } from '@/types/assessment';
+import { Assessment } from '../types/assessment';
 
 interface AssessmentIntroductionProps {
   assessment: Assessment;
@@ -34,7 +34,7 @@ const AssessmentIntroduction = ({ assessment, onContinue }: AssessmentIntroducti
             Discover Your Data Science Career Potential
           </CardTitle>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {assessment.intro_description || 'Take our comprehensive assessment to evaluate your psychological fit, technical readiness, and career alignment for a future in data science.'}
+            {assessment.description || 'Take our comprehensive assessment to evaluate your psychological fit, technical readiness, and career alignment for a future in data science.'}
           </p>
         </CardHeader>
         <CardContent className="text-center">

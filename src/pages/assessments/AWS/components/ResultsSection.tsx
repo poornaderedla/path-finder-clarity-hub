@@ -169,6 +169,9 @@ const ResultsSection = ({ assessmentData }: ResultsSectionProps) => {
   };
 
   const getNextSteps = () => {
+    const overallScore = assessmentData.completed 
+      ? (assessmentData.psychometric.score || 0) + (assessmentData.technical.score || 0) + (assessmentData.wiscar.score || 0)
+      : 0;
     if (overallScore >= 75) {
       return [
         'Start with AWS Cloud Practitioner certification',
@@ -194,6 +197,9 @@ const ResultsSection = ({ assessmentData }: ResultsSectionProps) => {
   };
 
   const getCareerPaths = () => {
+    const overallScore = assessmentData.completed 
+      ? (assessmentData.psychometric.score || 0) + (assessmentData.technical.score || 0) + (assessmentData.wiscar.score || 0)
+      : 0;
     if (overallScore >= 75) {
       return [
         'AWS Cloud Engineer',

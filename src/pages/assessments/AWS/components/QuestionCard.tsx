@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Question } from "@/types/assessment";
+import { Question } from "../types/assessment";
 
 interface QuestionCardProps {
   question: Question;
@@ -127,7 +127,7 @@ export const QuestionCard = ({
             />
           </div>
         </div>
-        <div className={`text-xs font-medium mb-1 ${sectionColor.text}`}>{question.category || ''}</div>
+        <div className={`text-xs font-medium mb-1 ${sectionColor.text}`}>Assessment Question</div>
         <CardTitle className="text-xl leading-relaxed">
           {question.text}
         </CardTitle>
