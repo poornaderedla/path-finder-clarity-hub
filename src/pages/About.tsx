@@ -1,277 +1,200 @@
 
 import React from 'react';
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Brain, Target, Users, Award, Heart, Lightbulb, 
-  CheckCircle, TrendingUp, Globe, Sparkles, 
-  BookOpen, GraduationCap, Briefcase, Star
-} from "lucide-react";
-import { Link } from "react-router-dom";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import { Users, Target, Award, Heart, CheckCircle, Star } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const About = () => {
-  const stats = [
-    { label: "Students Guided", value: "100,000+", icon: Users },
-    { label: "Assessments Completed", value: "500,000+", icon: Target },
-    { label: "Success Stories", value: "15,000+", icon: Award },
-    { label: "Countries Reached", value: "25+", icon: Globe }
+  const teamMembers = [
+    {
+      name: "Dr. Sarah Johnson",
+      role: "Chief Academic Officer",
+      image: "/api/placeholder/300/300",
+      bio: "Ph.D. in Educational Psychology with 15+ years in career counseling",
+      specialties: ["Career Psychology", "Assessment Design", "Student Development"]
+    },
+    {
+      name: "Michael Chen",
+      role: "Lead Technology Architect",
+      image: "/api/placeholder/300/300",
+      bio: "Former Google engineer specializing in AI-driven educational platforms",
+      specialties: ["AI/ML", "Educational Technology", "Platform Architecture"]
+    },
+    {
+      name: "Dr. Priya Patel",
+      role: "Research Director",
+      image: "/api/placeholder/300/300",
+      bio: "Expert in psychometric testing and educational research methodology",
+      specialties: ["Psychometrics", "Research Design", "Data Analysis"]
+    },
+    {
+      name: "James Wilson",
+      role: "Student Success Manager",
+      image: "/api/placeholder/300/300",
+      bio: "Dedicated to helping students navigate their career journey successfully",
+      specialties: ["Student Counseling", "Career Guidance", "Success Coaching"]
+    }
   ];
 
-  const team = [
-    {
-      name: "Dr. Priya Sharma",
-      role: "Educational Psychologist & Co-Founder",
-      bio: "Former IIT professor with 15+ years in educational psychology and career counseling.",
-      image: "/api/placeholder/150/150"
-    },
-    {
-      name: "Rahul Krishnan",
-      role: "Technology Lead & Co-Founder", 
-      bio: "Ex-Google engineer passionate about using AI to democratize career guidance.",
-      image: "/api/placeholder/150/150"
-    },
-    {
-      name: "Dr. Ananya Mehta",
-      role: "Research Director",
-      bio: "PhD in Cognitive Science, leading our assessment methodology and validation research.",
-      image: "/api/placeholder/150/150"
-    },
-    {
-      name: "Vikram Patel",
-      role: "Product Strategy",
-      bio: "Former McKinsey consultant specializing in education technology and student success.",
-      image: "/api/placeholder/150/150"
-    }
+  const achievements = [
+    { number: "50,000+", label: "Students Assessed", icon: Users },
+    { number: "95%", label: "Accuracy Rate", icon: Target },
+    { number: "200+", label: "University Partners", icon: Award },
+    { number: "4.8/5", label: "Student Satisfaction", icon: Star }
   ];
 
   const values = [
     {
-      icon: Heart,
-      title: "Student-First Approach",
-      description: "Every decision we make prioritizes student well-being and success over profits."
+      title: "Evidence-Based Approach",
+      description: "All our assessments are grounded in scientific research and validated through extensive testing.",
+      icon: CheckCircle
     },
     {
-      icon: Brain,
-      title: "Science-Backed Methods",
-      description: "Our assessments are grounded in psychological research and validated through extensive testing."
+      title: "Student-Centric Design",
+      description: "Every feature is designed with the student experience in mind, ensuring clarity and ease of use.",
+      icon: Heart
     },
     {
-      icon: Globe,
-      title: "Accessible to All",
-      description: "Quality career guidance should be free and accessible regardless of background or location."
-    },
-    {
-      icon: TrendingUp,
       title: "Continuous Innovation",
-      description: "We constantly evolve our methods based on the latest research and student feedback."
-    }
-  ];
-
-  const milestones = [
-    {
-      year: "2020",
-      title: "Founded PathFinder",
-      description: "Started with a simple vision: democratize quality career guidance for students."
+      description: "We constantly update our assessments to reflect the evolving landscape of education and careers.",
+      icon: Target
     },
     {
-      year: "2021", 
-      title: "First 10,000 Users",
-      description: "Reached our first major milestone with overwhelmingly positive feedback."
-    },
-    {
-      year: "2022",
-      title: "Research Partnership",
-      description: "Partnered with leading universities to validate and improve our assessment methods."
-    },
-    {
-      year: "2023",
-      title: "Global Expansion",
-      description: "Expanded to serve students across 25+ countries with localized assessments."
-    },
-    {
-      year: "2024",
-      title: "AI Integration",
-      description: "Launched AI-powered personalized recommendations and career path optimization."
+      title: "Accessibility First",
+      description: "Our platform is designed to be accessible to all students, regardless of their background or abilities.",
+      icon: Users
     }
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Header logoType="sparkles" navLinks={[
-        { to: "/", label: "Home" },
-        { to: "/assessments", label: "Assessments" },
-        { to: "/about", label: "About", active: true },
-        { to: "/blog", label: "Blog" },
-      ]} />
-
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
       {/* Hero Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-6 bg-blue-100 text-blue-700 hover:bg-blue-100" variant="secondary">
-            ✨ Our Story
-          </Badge>
-          
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-            Empowering Students to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-green-600">
-              Find Their Path
-            </span>
-          </h1>
-          
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            We believe every student deserves access to quality career guidance. Our mission is to democratize 
-            educational and career counseling through research-backed assessments and personalized insights.
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-6">About PathFinder</h1>
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+            We're on a mission to help students make informed decisions about their academic and career paths 
+            through scientifically-backed assessments and personalized guidance.
           </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link to="/assessments">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg">
-                Take an Assessment
-              </Button>
-            </Link>
-            <Button variant="outline" size="lg" className="px-8 py-4 text-lg border-blue-200 hover:bg-blue-50">
-              Contact Us
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <Card key={index} className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="mx-auto mb-4 p-3 bg-blue-100 rounded-full w-fit">
-                    <stat.icon className="h-8 w-8 text-blue-600" />
-                  </div>
-                  <div className="text-3xl font-bold text-gray-800 mb-2">{stat.value}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
-                Our Mission & Vision
-              </h2>
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
-                    <Target className="h-5 w-5 text-blue-600 mr-2" />
-                    Mission
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    To provide every student, regardless of their background or location, with access to 
-                    high-quality, research-backed career guidance that helps them make informed decisions 
-                    about their educational and professional future.
-                  </p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-3 flex items-center">
-                    <Lightbulb className="h-5 w-5 text-green-600 mr-2" />
-                    Vision
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    A world where every student finds their perfect educational and career path, 
-                    leading to a more fulfilled, productive, and innovative society where talents 
-                    are maximized and potential is fully realized.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="bg-gradient-to-br from-blue-50 to-white border-blue-100 p-6">
-                <BookOpen className="h-8 w-8 text-blue-600 mb-3" />
-                <h4 className="font-semibold text-gray-800 mb-2">Research-Based</h4>
-                <p className="text-sm text-gray-600">Grounded in psychological and educational research</p>
-              </Card>
-              <Card className="bg-gradient-to-br from-green-50 to-white border-green-100 p-6">
-                <GraduationCap className="h-8 w-8 text-green-600 mb-3" />
-                <h4 className="font-semibold text-gray-800 mb-2">Student-Centric</h4>
-                <p className="text-sm text-gray-600">Designed with student needs at the center</p>
-              </Card>
-              <Card className="bg-gradient-to-br from-purple-50 to-white border-purple-100 p-6">
-                <Briefcase className="h-8 w-8 text-purple-600 mb-3" />
-                <h4 className="font-semibold text-gray-800 mb-2">Career-Focused</h4>
-                <p className="text-sm text-gray-600">Practical guidance for real career outcomes</p>
-              </Card>
-              <Card className="bg-gradient-to-br from-orange-50 to-white border-orange-100 p-6">
-                <Globe className="h-8 w-8 text-orange-600 mb-3" />
-                <h4 className="font-semibold text-gray-800 mb-2">Globally Accessible</h4>
-                <p className="text-sm text-gray-600">Available to students worldwide</p>
-              </Card>
-            </div>
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12">
+            <Card className="p-8">
+              <CardHeader>
+                <CardTitle className="text-2xl text-blue-900 flex items-center gap-2">
+                  <Target className="h-6 w-6" />
+                  Our Mission
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  To empower students with the knowledge and insights they need to choose academic paths 
+                  and careers that align with their interests, abilities, and aspirations. We believe every 
+                  student deserves access to high-quality career guidance backed by scientific research.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="p-8">
+              <CardHeader>
+                <CardTitle className="text-2xl text-blue-900 flex items-center gap-2">
+                  <Award className="h-6 w-6" />
+                  Our Vision
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-700 text-lg leading-relaxed">
+                  To become the world's most trusted platform for educational and career assessment, 
+                  helping millions of students worldwide discover their optimal paths to success and 
+                  fulfillment in their chosen fields.
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Our Core Values
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              The principles that guide everything we do and every decision we make.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
-              <Card key={index} className="border-0 shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <div className="p-2 bg-blue-100 rounded-lg">
-                      <value.icon className="h-6 w-6 text-blue-600" />
-                    </div>
-                    <CardTitle className="text-xl">{value.title}</CardTitle>
+      {/* Achievements */}
+      <section className="bg-blue-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-900">Our Impact</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {achievements.map((achievement, index) => {
+              const Icon = achievement.icon;
+              return (
+                <div key={index} className="text-center">
+                  <div className="bg-white p-6 rounded-lg shadow-sm">
+                    <Icon className="h-8 w-8 text-blue-600 mx-auto mb-4" />
+                    <div className="text-3xl font-bold text-blue-900 mb-2">{achievement.number}</div>
+                    <div className="text-gray-600">{achievement.label}</div>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-900">Our Core Values</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {values.map((value, index) => {
+              const Icon = value.icon;
+              return (
+                <Card key={index} className="p-6">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-3 text-xl text-blue-900">
+                      <Icon className="h-6 w-6" />
+                      {value.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-700 leading-relaxed">{value.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Meet Our Team
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              A diverse group of educators, technologists, and researchers united by a common mission.
-            </p>
-          </div>
-
+      <section className="bg-gray-100 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-900">Meet Our Team</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Our diverse team of experts combines years of experience in education, psychology, 
+            technology, and student development to create the best possible experience for our users.
+          </p>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
-              <Card key={index} className="text-center border-0 shadow-md hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Users className="h-10 w-10 text-blue-600" />
+            {teamMembers.map((member, index) => (
+              <Card key={index} className="text-center">
+                <CardHeader>
+                  <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4"></div>
+                  <CardTitle className="text-lg text-blue-900">{member.name}</CardTitle>
+                  <Badge variant="secondary" className="mx-auto">{member.role}</Badge>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 mb-4">{member.bio}</p>
+                  <div className="flex flex-wrap gap-1 justify-center">
+                    {member.specialties.map((specialty, idx) => (
+                      <Badge key={idx} variant="outline" className="text-xs">
+                        {specialty}
+                      </Badge>
+                    ))}
                   </div>
-                  <h3 className="font-semibold text-lg text-gray-800 mb-1">{member.name}</h3>
-                  <p className="text-blue-600 text-sm font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
                 </CardContent>
               </Card>
             ))}
@@ -279,103 +202,59 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-16 px-4 bg-white/50">
-        <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Our Journey
-            </h2>
-            <p className="text-lg text-gray-600">
-              Key milestones in our mission to transform career guidance.
-            </p>
-          </div>
-
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                    {milestone.year.slice(-2)}
-                  </div>
+      {/* How We Work */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-900">How We Work</h2>
+          <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="text-center">
+                <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-blue-600">1</span>
                 </div>
-                <Card className="flex-1 border-0 shadow-sm">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-semibold text-lg text-gray-800">{milestone.title}</h3>
-                      <Badge variant="outline" className="text-xs">{milestone.year}</Badge>
-                    </div>
-                    <p className="text-gray-600">{milestone.description}</p>
-                  </CardContent>
-                </Card>
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Research & Development</h3>
+                <p className="text-gray-600">
+                  We continuously research the latest trends in education and career development to ensure our assessments remain relevant and accurate.
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recognition */}
-      <section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">
-              Recognition & Awards
-            </h2>
-            <p className="text-lg text-gray-600">
-              Acknowledged by leading organizations for our impact on education.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="text-center border-0 shadow-md">
-              <CardContent className="p-6">
-                <Star className="h-12 w-12 text-yellow-500 mx-auto mb-4" />
-                <h3 className="font-semibold text-lg mb-2">EdTech Innovation Award</h3>
-                <p className="text-gray-600 text-sm">UNESCO, 2023</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-0 shadow-md">
-              <CardContent className="p-6">
-                <Award className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-                <h3 className="font-semibold text-lg mb-2">Best Career Guidance Platform</h3>
-                <p className="text-gray-600 text-sm">Education Awards, 2023</p>
-              </CardContent>
-            </Card>
-            <Card className="text-center border-0 shadow-md">
-              <CardContent className="p-6">
-                <TrendingUp className="h-12 w-12 text-green-500 mx-auto mb-4" />
-                <h3 className="font-semibold text-lg mb-2">Fastest Growing EdTech</h3>
-                <p className="text-gray-600 text-sm">TechCrunch, 2024</p>
-              </CardContent>
-            </Card>
+              
+              <div className="text-center">
+                <div className="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-purple-600">2</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Assessment Design</h3>
+                <p className="text-gray-600">
+                  Our psychologists and education experts design comprehensive assessments that evaluate multiple dimensions of student potential.
+                </p>
+              </div>
+              
+              <div className="text-center">
+                <div className="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl font-bold text-green-600">3</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3 text-blue-900">Personalized Insights</h3>
+                <p className="text-gray-600">
+                  We provide detailed, actionable insights and recommendations tailored to each student's unique profile and aspirations.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-blue-600 to-green-600">
-        <div className="container mx-auto text-center max-w-3xl">
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Find Your Path?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8">
-            Join hundreds of thousands of students who've discovered their perfect career fit with PathFinder.
+      <section className="bg-blue-600 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Discover Your Path?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Join thousands of students who have found their direction with PathFinder's comprehensive assessments.
           </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/assessments">
-              <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-50 px-8 py-4 text-lg font-semibold">
-                Start Your Journey
-              </Button>
-            </Link>
-            <Link to="/blog">
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white/10 px-8 py-4 text-lg">
-                Read Our Blog
-              </Button>
-            </Link>
-          </div>
+          <Button size="lg" variant="secondary" asChild>
+            <a href="/assessments">Start Your Assessment</a>
+          </Button>
         </div>
       </section>
+
       <Footer />
     </div>
   );

@@ -1,218 +1,295 @@
 
-import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Search, Filter, ArrowLeft, Sparkles } from "lucide-react";
-import { Link } from "react-router-dom";
-import AssessmentCard from "../components/AssessmentCard";
-import { assessmentCategories, assessments } from "@/data/assessments";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import React from 'react';
+import { Brain, Code, Cloud, Smartphone, Shield, BarChart3, Palette, Briefcase } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const Assessments = () => {
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
+  const assessmentCategories = [
+    {
+      title: "Technology & Programming",
+      icon: Code,
+      color: "bg-blue-100 text-blue-700",
+      assessments: [
+        {
+          name: "Full Stack Development",
+          description: "Comprehensive assessment for front-end and back-end development skills",
+          duration: "45 minutes",
+          difficulty: "Intermediate",
+          tags: ["JavaScript", "React", "Node.js"],
+          popular: true
+        },
+        {
+          name: "Data Science & AI/ML",
+          description: "Evaluate your aptitude for data science and machine learning careers",
+          duration: "50 minutes",
+          difficulty: "Advanced",
+          tags: ["Python", "Statistics", "Machine Learning"],
+          popular: true
+        },
+        {
+          name: "DevOps Engineering",
+          description: "Assessment for cloud infrastructure and deployment expertise",
+          duration: "40 minutes",
+          difficulty: "Intermediate",
+          tags: ["AWS", "Docker", "CI/CD"],
+          popular: false
+        }
+      ]
+    },
+    {
+      title: "Cloud & Infrastructure",
+      icon: Cloud,
+      color: "bg-purple-100 text-purple-700",
+      assessments: [
+        {
+          name: "AWS Cloud Architect",
+          description: "Comprehensive AWS skills and cloud architecture assessment",
+          duration: "55 minutes",
+          difficulty: "Advanced",
+          tags: ["AWS", "Cloud Architecture", "Security"],
+          popular: true
+        },
+        {
+          name: "Multi-Cloud Engineer",
+          description: "Cross-platform cloud expertise evaluation",
+          duration: "60 minutes",
+          difficulty: "Expert",
+          tags: ["AWS", "Azure", "GCP"],
+          popular: false
+        }
+      ]
+    },
+    {
+      title: "Mobile Development",
+      icon: Smartphone,
+      color: "bg-green-100 text-green-700",
+      assessments: [
+        {
+          name: "Flutter Development",
+          description: "Cross-platform mobile development skills assessment",
+          duration: "45 minutes",
+          difficulty: "Intermediate",
+          tags: ["Flutter", "Dart", "Mobile UI"],
+          popular: false
+        },
+        {
+          name: "React Native",
+          description: "JavaScript-based mobile app development evaluation",
+          duration: "40 minutes",
+          difficulty: "Intermediate",
+          tags: ["React Native", "JavaScript", "iOS/Android"],
+          popular: false
+        }
+      ]
+    },
+    {
+      title: "Security & Ethics",
+      icon: Shield,
+      color: "bg-red-100 text-red-700",
+      assessments: [
+        {
+          name: "Cybersecurity Specialist",
+          description: "Information security and threat analysis capabilities",
+          duration: "50 minutes",
+          difficulty: "Advanced",
+          tags: ["Security", "Penetration Testing", "Risk Analysis"],
+          popular: true
+        },
+        {
+          name: "Ethical Hacking",
+          description: "White-hat hacking and vulnerability assessment skills",
+          duration: "55 minutes",
+          difficulty: "Expert",
+          tags: ["Penetration Testing", "Network Security", "Vulnerability Assessment"],
+          popular: false
+        }
+      ]
+    },
+    {
+      title: "Business & Analytics",
+      icon: BarChart3,
+      color: "bg-orange-100 text-orange-700",
+      assessments: [
+        {
+          name: "Business Analyst",
+          description: "Requirements analysis and business process optimization",
+          duration: "35 minutes",
+          difficulty: "Beginner",
+          tags: ["Requirements Analysis", "Process Improvement", "Stakeholder Management"],
+          popular: false
+        },
+        {
+          name: "Digital Marketing",
+          description: "Online marketing strategies and campaign management",
+          duration: "40 minutes",
+          difficulty: "Intermediate",
+          tags: ["SEO", "Social Media", "Analytics"],
+          popular: true
+        }
+      ]
+    },
+    {
+      title: "Design & User Experience",
+      icon: Palette,
+      color: "bg-pink-100 text-pink-700",
+      assessments: [
+        {
+          name: "UI/UX Design",
+          description: "User interface and experience design capabilities",
+          duration: "45 minutes",
+          difficulty: "Intermediate",
+          tags: ["Design Thinking", "Prototyping", "User Research"],
+          popular: false
+        }
+      ]
+    }
+  ];
 
-  // Replace getAllAssessments with direct use of assessments
-  const allAssessments = assessments;
-  
-  // Debug logs
-  console.log('assessmentCategories:', assessmentCategories);
-  console.log('allAssessments:', allAssessments);
-
-  const filteredAssessments = allAssessments.filter(assessment => {
-    const matchesCategory = !selectedCategory || assessment.category === selectedCategory;
-    const matchesSearch = !searchQuery || 
-      assessment.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      assessment.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      assessment.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    const matchesDifficulty = !selectedDifficulty || assessment.difficulty === selectedDifficulty;
-    
-    return matchesCategory && matchesSearch && matchesDifficulty;
-  });
-
-  // Debug logs for filter state
-  console.log('selectedCategory:', selectedCategory);
-  console.log('filteredAssessments:', filteredAssessments);
-
-  const currentCategory = selectedCategory ? selectedCategory : null;
+  const getDifficultyColor = (difficulty: string) => {
+    switch (difficulty) {
+      case 'Beginner': return 'bg-green-100 text-green-700';
+      case 'Intermediate': return 'bg-yellow-100 text-yellow-700';
+      case 'Advanced': return 'bg-orange-100 text-orange-700';
+      case 'Expert': return 'bg-red-100 text-red-700';
+      default: return 'bg-gray-100 text-gray-700';
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50">
-      <Header logoType="sparkles" navLinks={[
-        { to: "/", label: "Home" },
-        { to: "/assessments", label: "Assessments", active: true },
-        { to: "/about", label: "About" },
-        { to: "/blog", label: "Blog" },
-      ]} />
-      {/* Secondary Navigation Bar */}
-      <nav className="bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-primary-100 sticky top-[64px] z-40">
-        <div className="container mx-auto px-4 flex space-x-8 overflow-x-auto">
-          <button className="py-4 px-2 text-primary-600 border-b-2 border-primary-600 font-semibold whitespace-nowrap focus:outline-none">Computer Science</button>
-        </div>
-      </nav>
-
-      <div className="container mx-auto px-4 py-8">
-        {/* Hero Section - Only Computer Science */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-            Computer Science
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Explore a wide range of Computer Science assessments to discover your strengths, interests, and ideal learning paths.
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-6">Career Assessments</h1>
+          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+            Discover your perfect career path with our comprehensive, scientifically-backed assessments. 
+            Find the role that matches your skills, interests, and aspirations.
           </p>
         </div>
+      </section>
 
-        {/* Filters */}
-        <div className="mb-8 space-y-4">
-          <div className="flex flex-col md:flex-row gap-4 items-center">
-            {/* Search Bar */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search assessments..."
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-
-            {/* Difficulty Filter */}
-            <div className="flex items-center space-x-2">
-              <Filter className="h-4 w-4 text-gray-500" />
-              <select
-                className="border border-gray-200 rounded-lg px-3 py-2 text-sm"
-                value={selectedDifficulty || ""}
-                onChange={(e) => setSelectedDifficulty(e.target.value || null)}
-              >
-                <option value="">All Levels</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-            </div>
-
-            {/* Clear Filters */}
-            {(searchQuery || selectedDifficulty || selectedCategory) && (
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedDifficulty(null);
-                  setSelectedCategory(null);
-                }}
-                className="text-sm"
-              >
-                Clear Filters
-              </Button>
-            )}
-          </div>
-
-          {/* Category Filter Section (moved up) */}
-          {!selectedCategory && (
-            <div className="w-full">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Explore by Category</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {assessmentCategories.map((category) => (
-                  <Card
-                    key={category}
-                    className="group hover:shadow-lg transition-all duration-300 cursor-pointer border-0 overflow-hidden"
-                    // Defensive: Only trigger on direct card click
-                    onClick={e => {
-                      // Only trigger if the card itself is clicked, not a child
-                      if (e.target === e.currentTarget || (e.target as HTMLElement).closest('.card-content')) {
-                        setSelectedCategory(category);
-                      }
-                    }}
-                  >
-                    {/* Removed overlay to prevent dimming */}
-                    <CardContent className="p-4 relative card-content group-hover:bg-blue-50 transition-colors">
-                      <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
-                        {category}
-                      </h3>
-                      <Badge variant="secondary" className="text-xs">
-                        {allAssessments.filter(a => a.category === category).length} assessment{allAssessments.filter(a => a.category === category).length !== 1 ? 's' : ''}
-                      </Badge>
-                    </CardContent>
-                  </Card>
-                ))}
-        </div>
-            </div>
-          )}
-        </div>
-
-        {/* Back Button for Category View */}
-        {selectedCategory && (
-          <div className="mb-6">
-            <Button
-              variant="ghost"
-              onClick={() => setSelectedCategory(null)}
-              className="text-blue-600 hover:text-blue-700"
-            >
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to All Assessments
-            </Button>
-          </div>
-        )}
-
-        {/* Results Count */}
-        <div className="mb-6">
-          <p className="text-gray-600">
-            Showing {filteredAssessments.length} assessment{filteredAssessments.length !== 1 ? 's' : ''}
-            {searchQuery && ` for "${searchQuery}"`}
+      {/* Assessment Categories */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-900">Choose Your Assessment Category</h2>
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Select from our wide range of specialized assessments designed to evaluate your fit for different career paths.
           </p>
-        </div>
 
-        {/* Assessment Grid */}
-        {filteredAssessments.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {filteredAssessments.map((assessment) => (
-              <AssessmentCard key={assessment.id} {...assessment} />
-            ))}
+          <div className="space-y-12">
+            {assessmentCategories.map((category, categoryIndex) => {
+              const Icon = category.icon;
+              return (
+                <div key={categoryIndex}>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className={`p-3 rounded-lg ${category.color}`}>
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-blue-900">{category.title}</h3>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {category.assessments.map((assessment, index) => (
+                      <Card key={index} className="relative overflow-hidden hover:shadow-lg transition-shadow">
+                        {assessment.popular && (
+                          <div className="absolute top-4 right-4">
+                            <Badge className="bg-yellow-500 text-white">Popular</Badge>
+                          </div>
+                        )}
+                        
+                        <CardHeader>
+                          <CardTitle className="text-xl text-blue-900 mb-2">
+                            {assessment.name}
+                          </CardTitle>
+                          <p className="text-gray-600 text-sm leading-relaxed">
+                            {assessment.description}
+                          </p>
+                        </CardHeader>
+                        
+                        <CardContent>
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-4 text-sm text-gray-500">
+                              <span>⏱️ {assessment.duration}</span>
+                              <Badge className={getDifficultyColor(assessment.difficulty)} variant="secondary">
+                                {assessment.difficulty}
+                              </Badge>
+                            </div>
+                          </div>
+                          
+                          <div className="flex flex-wrap gap-1 mb-4">
+                            {assessment.tags.map((tag, tagIndex) => (
+                              <Badge key={tagIndex} variant="outline" className="text-xs">
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                          
+                          <Button className="w-full" variant="default">
+                            Start Assessment
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-        ) : (
-          <Card className="p-12 text-center">
-            <CardContent>
-              <div className="text-gray-400 mb-4">
-                <Search className="h-12 w-12 mx-auto" />
-              </div>
-              <h3 className="text-lg font-semibold text-gray-600 mb-2">No assessments found</h3>
-              <p className="text-gray-500 mb-4">
-                Try adjusting your search criteria or browse our categories.
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedDifficulty(null);
-                  setSelectedCategory(null);
-                }}
-              >
-                Clear Filters
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+        </div>
+      </section>
 
-        {/* Featured Categories (when not in category view) */}
-        {/* Removed old Explore by Category section from the bottom */}
+      {/* How It Works */}
+      <section className="bg-blue-50 py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-900">How Our Assessments Work</h2>
+          
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+              <h3 className="text-lg font-semibold mb-2 text-blue-900">Choose Assessment</h3>
+              <p className="text-gray-600 text-sm">Select the career path you're interested in exploring</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+              <h3 className="text-lg font-semibold mb-2 text-blue-900">Complete Evaluation</h3>
+              <p className="text-gray-600 text-sm">Answer questions about your skills, interests, and preferences</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+              <h3 className="text-lg font-semibold mb-2 text-blue-900">Get Analysis</h3>
+              <p className="text-gray-600 text-sm">Receive detailed insights based on scientific assessment methods</p>
+            </div>
+            
+            <div className="text-center">
+              <div className="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">4</div>
+              <h3 className="text-lg font-semibold mb-2 text-blue-900">Plan Your Path</h3>
+              <p className="text-gray-600 text-sm">Use personalized recommendations to guide your career journey</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="mt-16 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl p-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">
-            Can't Find What You're Looking For?
-          </h2>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            We're constantly adding new assessments. Get notified when we launch assessments in your area of interest.
+      {/* CTA Section */}
+      <section className="bg-blue-600 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">Ready to Find Your Perfect Career?</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Take the first step towards a fulfilling career with our comprehensive assessments.
           </p>
-          <Button className="bg-white text-blue-600 hover:bg-gray-50">
-            Request New Assessment
+          <Button size="lg" variant="secondary">
+            Start Your Journey Today
           </Button>
-        </section>
-      </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
