@@ -4,8 +4,8 @@ import { Users, Target, Award, Heart, CheckCircle, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const About = () => {
   const teamMembers = [
@@ -70,52 +70,67 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Header />
       
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">About PathFinder</h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
-            We're on a mission to help students make informed decisions about their academic and career paths 
-            through scientifically-backed assessments and personalized guidance.
-          </p>
+      <section className="relative py-24 bg-gradient-to-br from-primary to-primary-variant overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center text-white">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+              <span className="text-sm font-medium">🚀 Empowering 50,000+ Students Worldwide</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              About
+              <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent"> PathFinder </span>
+            </h1>
+            
+            <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+              We're revolutionizing career guidance through cutting-edge technology and scientifically-backed assessments. 
+              Our mission is to help every student discover their perfect career path with confidence and clarity.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-16">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-12">
-            <Card className="p-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-blue-900 flex items-center gap-2">
-                  <Target className="h-6 w-6" />
-                  Our Mission
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <Card className="p-8 border-2 hover:border-primary/20 transition-colors bg-card shadow-card">
+              <CardHeader className="pb-6">
+                <CardTitle className="text-3xl text-foreground flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-primary/10">
+                    <Target className="h-8 w-8 text-primary" />
+                  </div>
+                  <span>Our Mission</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  To empower students with the knowledge and insights they need to choose academic paths 
-                  and careers that align with their interests, abilities, and aspirations. We believe every 
-                  student deserves access to high-quality career guidance backed by scientific research.
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  To democratize access to world-class career guidance by providing scientifically-backed assessments 
+                  that help students discover their true potential. We believe every individual deserves personalized 
+                  insights to make confident career decisions.
                 </p>
               </CardContent>
             </Card>
             
-            <Card className="p-8">
-              <CardHeader>
-                <CardTitle className="text-2xl text-blue-900 flex items-center gap-2">
-                  <Award className="h-6 w-6" />
-                  Our Vision
+            <Card className="p-8 border-2 hover:border-primary/20 transition-colors bg-card shadow-card">
+              <CardHeader className="pb-6">
+                <CardTitle className="text-3xl text-foreground flex items-center gap-3">
+                  <div className="p-3 rounded-lg bg-secondary/10">
+                    <Award className="h-8 w-8 text-secondary" />
+                  </div>
+                  <span>Our Vision</span>
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-lg leading-relaxed">
-                  To become the world's most trusted platform for educational and career assessment, 
-                  helping millions of students worldwide discover their optimal paths to success and 
-                  fulfillment in their chosen fields.
+                <p className="text-muted-foreground text-lg leading-relaxed">
+                  To become the global standard for career assessment technology, empowering millions of students 
+                  worldwide to unlock their potential and pursue fulfilling careers aligned with their unique 
+                  strengths and passions.
                 </p>
               </CardContent>
             </Card>

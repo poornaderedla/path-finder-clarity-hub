@@ -4,8 +4,8 @@ import { Brain, Code, Cloud, Smartphone, Shield, BarChart3, Palette, Briefcase }
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 
 const Assessments = () => {
   const assessmentCategories = [
@@ -160,27 +160,56 @@ const Assessments = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">Career Assessments</h1>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
-            Discover your perfect career path with our comprehensive, scientifically-backed assessments. 
-            Find the role that matches your skills, interests, and aspirations.
-          </p>
+      {/* Hero Section - Omni Calculator Style */}
+      <section className="relative py-24 bg-gradient-to-br from-primary to-primary-variant overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="relative container mx-auto px-4">
+          <div className="max-w-5xl mx-auto text-center text-white">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+              <span className="text-sm font-medium">🎯 Scientifically Validated Career Assessments</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Find Your Perfect
+              <span className="bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent"> Career Match </span>
+            </h1>
+            
+            <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
+              Take our comprehensive, scientifically-backed assessments to discover career paths that align perfectly 
+              with your unique skills, interests, and personality. Join 50,000+ students who found their direction.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto mt-12">
+              <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 backdrop-blur-sm">
+                <div className="text-2xl font-bold">15+</div>
+                <div className="text-sm text-white/70">Assessment Types</div>
+              </div>
+              <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 backdrop-blur-sm">
+                <div className="text-2xl font-bold">95%</div>
+                <div className="text-sm text-white/70">Accuracy Rate</div>
+              </div>
+              <div className="flex flex-col items-center gap-2 p-4 rounded-lg bg-white/5 backdrop-blur-sm">
+                <div className="text-2xl font-bold">30-60</div>
+                <div className="text-sm text-white/70">Minutes Each</div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Assessment Categories */}
-      <section className="py-16">
+      {/* Assessment Categories - Omni Style */}
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4 text-blue-900">Choose Your Assessment Category</h2>
-          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Select from our wide range of specialized assessments designed to evaluate your fit for different career paths.
-          </p>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4 text-foreground">Choose Your Assessment</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Explore our comprehensive range of career assessments, each designed with cutting-edge psychometric research 
+              to provide you with accurate, actionable insights about your ideal career path.
+            </p>
+          </div>
 
           <div className="space-y-12">
             {assessmentCategories.map((category, categoryIndex) => {
